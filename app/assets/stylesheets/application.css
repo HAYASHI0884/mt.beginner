@@ -35,3 +35,32 @@
  .size2 {
   width: 53%;
  }
+
+ .rogin-image {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  min-height: 300px;
+  background-image: url('rogin.jpg');
+  background-size: cover;
+ }
+
+ .text-shadow {
+  text-shadow: 3px 3px 3px #000000;
+ }
+
+ .opacity {
+   opacity: 0.8;
+ }
+
+ .bg-rogin {
+   height: 25%;
+   width: 30%;
+   background: rgba(55, 75, 54, 0.8);
+ }
+
+ .bg-signin {
+  height: 60%;
+  width: 40%;
+  background: rgba(55, 75, 54, 0.8);
+ }
