@@ -1,0 +1,33 @@
+<div class="rogin-image text-white d-flex flex-column align-items-center justify-content-center">
+
+  <div class="bg-rogin">
+
+    <p class="h1 font-weight-bold m-3 px-3 text-shadow opacity text-center">LOG IN</p>
+
+    <div class='text-center'>
+      <%= flash[:notice] %>
+      <%= flash[:alert] %>
+    </div>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+      <div class="">
+        <div class="field d-flex justify-content-center align-items-center">
+          <%= f.label :"メールアドレス" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+
+        <div class="field d-flex justify-content-center align-items-center">
+          <%= f.label :"パスワード" %>
+          <%= f.password_field :password, autocomplete: "current-password" %>
+        </div>
+
+        <div class="actions d-flex justify-content-center align-items-center m-4">
+          <%= f.submit "Log in" %>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+
+</div>
