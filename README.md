@@ -52,7 +52,7 @@ MT.BEGINNER
 * SNS認証機能
 
 # データベース設計
-<img width="150" src="MT.BEGINNER.drawio.svg" alt="ER図">
+![ER図](app/assets/images/MT.BEGINNER.dio.svg)
 
 # ローカルでの動作方法
 一通り機能が実装した後に記述
