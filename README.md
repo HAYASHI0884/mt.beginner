@@ -52,7 +52,7 @@ MT.BEGINNER
 * SNS認証機能
 
 # データベース設計
-![ER図](app/assets/images/MT.BEGINNER.dio.svg)
+![ER図](app/assets/images/MT.BEGINNER.ER.png)
 
 # ローカルでの動作方法
 一通り機能が実装した後に記述
