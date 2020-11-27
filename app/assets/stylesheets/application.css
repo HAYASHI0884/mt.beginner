@@ -28,12 +28,7 @@
  }
 
  .size {
-   height: 10%;
-   width: 10%;
- }
-
- .size2 {
-  width: 53%;
+  width: 55%;
  }
 
  .rogin-image {
@@ -54,7 +49,7 @@
  }
 
  .bg-rogin {
-   height: 25%;
+   height: 30%;
    width: 30%;
    background: rgba(55, 75, 54, 0.8);
  }
@@ -63,4 +58,13 @@
   height: 60%;
   width: 40%;
   background: rgba(55, 75, 54, 0.8);
+ }
+
+ .top-image {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  min-height: 300px;
+  background-image: url('top.jpg');
+  background-size: cover;
  }

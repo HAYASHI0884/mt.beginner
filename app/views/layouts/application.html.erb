@@ -16,10 +16,10 @@
     <header>
       <nav class="p-4 header-color d-flex justify-content-between">
         <% if user_signed_in? %>
-          <%=link_to image_tag("rogomark.png", class:"size2"), pages_top_path %>
+          <%=link_to image_tag("rogomark.png", class:"size"), pages_top_path %>
           <div type="button" class="btn btn-light rounded-pill px-2 mx-3" ><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></div>
         <% else %>
-            <%= image_tag("rogomark.png", class:"size") %>
+            <%=link_to image_tag("rogomark.png", class:"size"), root_path %>
             <div>
               <div type="button" class="btn btn-light rounded-pill px-3 mx-3"><%= link_to 'ログイン', new_user_session_path %></div>
               <div type="button" class="btn btn-light rounded-pill px-3 mx-3"><%= link_to '新規登録', new_user_registration_path %></div>
