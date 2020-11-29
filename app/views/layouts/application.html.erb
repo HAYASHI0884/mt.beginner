@@ -17,9 +17,14 @@
       <nav class="p-4 header-color d-flex justify-content-between">
         <% if user_signed_in? %>
           <%=link_to image_tag("rogomark.png", class:"size"), pages_top_path %>
-          <div type="button" class="btn btn-light rounded-pill px-2 mx-3" ><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></div>
+          <div class="d-flex align-items-center justify-content-center">
+            <a href="/pages/<%= current_user.id %>" class="h4">
+              <span>こんにちは、</span><%= (current_user.name) %>
+            </a>
+            <div type="button" class="btn btn-light rounded-pill px-2 mx-3" ><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></div>
+          </div>
         <% else %>
-            <%=link_to image_tag("rogomark.png", class:"size"), root_path %>
+            <%= link_to image_tag("rogomark.png", class:"size"), root_path %>
             <div>
               <div type="button" class="btn btn-light rounded-pill px-3 mx-3"><%= link_to 'ログイン', new_user_session_path %></div>
               <div type="button" class="btn btn-light rounded-pill px-3 mx-3"><%= link_to '新規登録', new_user_registration_path %></div>
