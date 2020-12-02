@@ -14,6 +14,7 @@
  *= require_self
  */
 
+/* ホームページ・ヘッダー */
  .home-image {
     position: relative;
     height: 100vh;
@@ -60,6 +61,7 @@
   background: rgba(55, 75, 54, 0.8);
  }
 
+/* トップページ・ハンバーガーメニュー */
  .top-image {
   position: relative;
   height: 100vh;
@@ -155,6 +157,7 @@ body.noscroll{
   overflow: hidden;
 }
 
+/* マイページ */
 .mypage-image {
   position: relative;
   height: 100vh;
