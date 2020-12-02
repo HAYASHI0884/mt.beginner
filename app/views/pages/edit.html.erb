@@ -1,17 +1,20 @@
 <div class="mypage-image">
-<h1>編集ページ</h1>
+<h1 class="font-weight-bold">編集ページ</h1>
 
-<%= form_with model:@user, url:page_path, local:true do |f|%>
-  <div>
-    <%= f.file_field :image %>
-  </div>
-  <div>
-    <%= f.label :text, "プロフィール文" %><br />
-    <%= f.text_area :text %>
-  </div>
-  <div>
-    <%= f.submit "完了" %>
-  </div>
-<% end %>
+<div class="d-flex align-items-center justify-content-center flex-column  m-5">
+  <%= form_with model:@user, url:page_path, local:true, class:"d-flex align-items-center justify-content-center flex-column" do |f|%>
+    <div class="m-5 text-white text-shadow text-center h5">
+      <%= f.label :image, "プロフィール写真" %><br />
+      <%= f.file_field :image %>
+    </div>
+    <div class="m-5 text-white text-shadow text-center h5">
+      <%= f.label :text, "プロフィール" %><br />
+      <%= f.text_area :text, size:"100x3" %>
+    </div>
+    <div class="m-3">
+      <%= f.submit "完了" %>
+    </div>
+  <% end %>
 
-<%= link_to "戻る", page_path(current_user.id), class:"btn btn-light rounded-pill px-2" %>
+  <%= link_to "戻る", page_path(current_user.id), class:"btn btn-light rounded-pill px-3 m-5" %>
+</div>
