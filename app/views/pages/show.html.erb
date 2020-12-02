@@ -1,21 +1,22 @@
 <div class="mypage-image">
 
 <div class="d-flex align-items-center justify-content-center flex-column">
-  <% if @user.image.attached? %>
-    <%= image_tag @user.image %>
-  <% end %>
-
-
-  <h1 class="text-center text-white text-shadow mb-5"><%= current_user.name %></h1>
-
-  <div class="bg-white border border-dark prf-size">
-    <% unless @user.text.nil? %>
-      <%= @user.text %>
+  <div class="m-3">
+    <% if @user.image.attached? %>
+      <%= image_tag @user.image %>
     <% end %>
   </div>
 
+  <h1 class="text-center text-white text-shadow mb-5"><%= @user.name %></h1>
+
+  <div class="bg-white border border-dark prf-size">
+    <%= @user.text %>
+  </div>
+
   <div class="m-5">
-    <%= link_to "編集", edit_page_path(current_user.id), class:"btn btn-light rounded-pill px-3" %>
+    <% if current_user.id == @user.id %>
+      <%= link_to "編集", edit_page_path(current_user.id), class:"btn btn-light rounded-pill px-3" %>
+    <% end %>
   </div>
 </div>
 
