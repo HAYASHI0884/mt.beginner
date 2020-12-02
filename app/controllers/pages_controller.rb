@@ -11,9 +11,7 @@ class PagesController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    unless current_user.id == @user.id
-      redirect_to pages_top_path
-    end
+    redirect_to pages_top_path unless current_user.id == @user.id
   end
 
   def update
@@ -26,6 +24,7 @@ class PagesController < ApplicationController
   end
 
   private
+
   def user_params
     params.require(:user).permit(:text, :image)
   end
