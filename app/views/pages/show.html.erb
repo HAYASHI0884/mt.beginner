@@ -1,3 +1,14 @@
 <div class="mypage-image">
-<h1>こんにちは、<%= current_user.name %>さん</h1>
-<p>ユーザー用ページです。</p>
+<h1 class="text-center text-white text-shadow"><%= current_user.name %>さん</h1>
+<% if @user.image.attached? %>
+  <%= image_tag @user.image %>
+<% end %>
+<div class="bg-white border border-dark">
+  <% unless @user.text.nil? %>
+    <%= @user.text %>
+  <% end %>
+</div>
+<%= link_to "編集", edit_page_path(current_user.id), class:"btn btn-light rounded-pill px-2" %>
+
+
+
