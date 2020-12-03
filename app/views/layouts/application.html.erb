@@ -21,7 +21,7 @@
             <a href="/pages/<%= current_user.id %>" class="h4 text-white mx-4">
               <span>こんにちは、<%= (current_user.name) %>さん</span>
             </a>
-            <div type="button" class="btn btn-light rounded-pill px-2 mx-4" ><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "text-reset" %></div>
+            <div type="button" class="btn btn-light rounded-pill px-2 mx-4" ><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "text-reset font-weight-bold" %></div>
 
             <div class="nav-wrapper">
               <nav class="header-nav d-flex align-items-center justify-content-center text-center h4">
