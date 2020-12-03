@@ -1,0 +1,20 @@
+<div class="mypage-image">
+<h1 class="text-white text-shadow text-bg">編集ページ</h1>
+
+<div class="d-flex align-items-center justify-content-center flex-column  m-5">
+  <%= form_with model:@user, url:page_path, local:true, class:"d-flex align-items-center justify-content-center flex-column" do |f|%>
+    <div class="m-5 text-white text-shadow text-center">
+      <%= f.label :image, "プロフィール写真", class:"h4" %><br />
+      <%= f.file_field :image, class:"text-shadow" %>
+    </div>
+    <div class="m-5 text-white text-shadow text-center">
+      <%= f.label :text, "プロフィール", class:"h4" %><br />
+      <%= f.text_area :text, size:"100x3", class:"box-shadow" %>
+    </div>
+    <div class="m-3">
+      <%= f.submit "完了", class:"box-shadow px-3 py-1 mb-5" %>
+    </div>
+  <% end %>
+
+  <%= link_to "戻る", page_path(current_user.id), class:"box-shadow btn btn-light rounded-pill px-3 m-5" %>
+</div>

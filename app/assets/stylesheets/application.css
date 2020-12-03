@@ -14,6 +14,7 @@
  *= require_self
  */
 
+/* ホームページ・ヘッダー */
  .home-image {
     position: relative;
     height: 100vh;
@@ -21,19 +22,31 @@
     min-height: 300px;
     background-image: url('home.jpg');
     background-size: cover;
+    z-index: 0;
  }
+
+ .home-image:before{
+  content: '';
+  background: inherit;
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+  position: absolute;
+  top: 5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: -1;
+}
 
  .header-color {
    background-color: #646464;
  }
 
  .size {
-   height: 10%;
-   width: 10%;
- }
-
- .size2 {
-  width: 53%;
+  width: 55%;
  }
 
  .rogin-image {
@@ -54,13 +67,151 @@
  }
 
  .bg-rogin {
-   height: 25%;
+   height: 32%;
    width: 30%;
    background: rgba(55, 75, 54, 0.8);
  }
 
  .bg-signin {
-  height: 60%;
+  height: 48%;
   width: 40%;
   background: rgba(55, 75, 54, 0.8);
  }
+
+/* トップページ・ハンバーガーメニュー */
+ .top-image {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  min-height: 300px;
+  background-image: url('top.jpg');
+  background-size: cover;
+ }
+
+ .burger-btn{
+  display: block;
+  width: 39px;
+  height: 39px;
+  position: relative;
+  z-index: 3;
+  border:none;
+}
+
+ .bar{
+  width: 40px;
+  height: 5px;
+  display: block;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffffff;
+}
+
+ .bar_top{
+  top: 5px;
+}
+
+ .bar_mid{
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.bar_bottom{
+  bottom: 5px;
+}
+
+.burger-btn.close .bar_top{
+  transform: translate(-50%,15px) rotate(45deg);
+  transition: transform .3s;
+}
+.burger-btn.close .bar_mid{
+  opacity: 0;
+  transition: opacity .3s;
+}
+.burger-btn.close .bar_bottom{
+transform: translate(-50%,-8px) rotate(-45deg);
+transition: transform .3s;
+}
+
+ .nav-wrapper{
+  transform: translateX(100%);
+  transition: .3s;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 2;
+}
+
+ .nav-wrapper.slide-in{
+  transform: translateX(85%);
+  transition: .3s;
+}
+
+ .header-nav{
+  width: 15%;
+  height: 100%;
+  background-color:#646464;
+  z-index: 2;
+}
+
+ .header-nav.nav-list{
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+}
+
+ .header-nav.nav-item{
+  margin-right: 0;
+  margin-bottom: 40px;
+}
+
+body.noscroll{
+  overflow: hidden;
+}
+
+/* マイページ */
+.mypage-image {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  min-height: 300px;
+  background-image: url('mypage.jpg');
+  background-size: cover;
+  z-index: 0;
+}
+
+.mypage-image:before{
+  content: '';
+  background: inherit;
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+  position: absolute;
+  top: 3px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: -1;
+}
+
+.prf-size {
+  height: 80px;
+  width: 900px;
+}
+
+.box-shadow {
+  box-shadow: 2px 2px #000000;
+}
+
+.text-bg {
+  height: auto;
+  width: 205px;
+  background: rgba(55, 75, 54, 0.8);
+}
