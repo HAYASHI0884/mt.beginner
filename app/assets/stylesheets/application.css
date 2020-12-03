@@ -205,3 +205,13 @@ body.noscroll{
   height: 80px;
   width: 900px;
 }
+
+.box-shadow {
+  box-shadow: 2px 2px #000000;
+}
+
+.text-bg {
+  height: auto;
+  width: 205px;
+  background: rgba(55, 75, 54, 0.8);
+}

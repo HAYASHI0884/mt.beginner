@@ -9,13 +9,13 @@
 
   <h1 class="text-center text-white text-shadow mb-5"><%= @user.name %></h1>
 
-  <div class="bg-white border border-dark prf-size">
+  <div class="bg-white border border-dark prf-size box-shadow">
     <%= @user.text %>
   </div>
 
   <div class="m-5">
     <% if current_user.id == @user.id %>
-      <%= link_to "編集", edit_page_path(current_user.id), class:"btn btn-light rounded-pill px-3" %>
+      <%= link_to "編集", edit_page_path(current_user.id), class:"btn btn-light rounded-pill px-3 box-shadow" %>
     <% end %>
   </div>
 </div>
