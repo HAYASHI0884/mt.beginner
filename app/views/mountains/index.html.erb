@@ -1,1 +1,17 @@
+<div class="search-image">
 <h1>山検索機能ページ</h1>
+<%= search_form_for @m do |f| %>
+  <%= f.label :name, "山の名前" %>
+  <%= f.search_field :name_cont %>
+
+  <%= f.submit "検索" %>
+<% end %>
+
+<% @results.each do |result| %>
+  <tr>
+    <td><%= result.name %></td>
+    <td><%= result.area.name %></td>
+    <td><%= result.elevation.name %></td>
+    <td><%= result.climb_time.name %></td>
+  </tr>
+<% end %>
