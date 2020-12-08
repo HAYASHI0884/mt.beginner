@@ -1,17 +1,31 @@
 <div class="search-image">
 <h1>山検索機能ページ</h1>
 <%= search_form_for @m do |f| %>
-  <%= f.label :name, "山の名前" %>
+  <%= f.label :name_cont, "山の名前" %>
   <%= f.search_field :name_cont %>
+
+  <%= f.label :area_name_eq, "地域" %>
+  <%= f.collection_select :area_name_eq, @area, :name, :name, include_blank: "指定なし" %>
+
+  <%= f.label :elevation_name_eq, "標高" %>
+  <%= f.collection_select :elevation_name_eq, @elevation, :name, :name, include_blank: "指定なし" %>
+
+  <%= f.label :climb_time_name_eq, "総歩行時間" %>
+  <%= f.collection_select :climb_time_name_eq, @climb_time, :name, :name, include_blank: "指定なし" %>
 
   <%= f.submit "検索" %>
 <% end %>
 
-<% @results.each do |result| %>
-  <tr>
-    <td><%= result.name %></td>
-    <td><%= result.area.name %></td>
-    <td><%= result.elevation.name %></td>
-    <td><%= result.climb_time.name %></td>
-  </tr>
+<% if @results.length !=0 %>
+  <% @results.each do |result| %>
+    <br>
+    <tr>
+      <td><%= result.name %></td>
+      <td><%= result.area.name %></td>
+      <td><%= result.elevation.name %></td>
+      <td><%= result.climb_time.name %></td>
+    </tr>
+  <% end %>
+<% else %>
+  ごめんなさい、該当する山が見つかりませんでした…<br>もう一度検索してみて下さい！
 <% end %>

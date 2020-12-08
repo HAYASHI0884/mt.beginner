@@ -1,7 +1,7 @@
 class MountainsController < ApplicationController
   def index
     @m = Mountain.ransack(params[:q])
-    @results = @m.result
+    @results = @m.result.includes(:area, :elevation, :climb_time)
     set_column
   end
 
@@ -12,8 +12,8 @@ class MountainsController < ApplicationController
   private
 
   def set_column
-    @area = Area.select("name").distinct
-    @elevation = Elevation.select("name").distinct
-    @climb_time = ClimbTime.select("name").distinct
+    @area = Area.all
+    @elevation = Elevation.all
+    @climb_time = ClimbTime.all
   end
 end
