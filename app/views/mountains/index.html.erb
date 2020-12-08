@@ -20,12 +20,13 @@
   <% @results.each do |result| %>
     <br>
     <tr>
-      <td><%= result.name %></td>
-      <td><%= result.area.name %></td>
-      <td><%= result.elevation.name %></td>
-      <td><%= result.climb_time.name %></td>
+      <th><%= link_to result.name, mountain_path(result.id) %></th>
+      <th><%= result.area.name %></th>
+      <th><%= result.elevation.name %></th>
+      <th><%= result.climb_time.name %></th>
     </tr>
   <% end %>
 <% else %>
-  ごめんなさい、該当する山が見つかりませんでした…<br>もう一度検索してみて下さい！
+  <div>ごめんなさい、該当する山が見つかりませんでした…</div>
 <% end %>
+
