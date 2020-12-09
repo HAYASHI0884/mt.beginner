@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
   before_action :set_user, only:[:show, :edit, :update]
 
   def index

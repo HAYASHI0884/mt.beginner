@@ -1,4 +1,6 @@
 class MountainsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @m = Mountain.ransack(params[:q])
     @results = @m.result.includes(:area, :elevation, :climb_time)
