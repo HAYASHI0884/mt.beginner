@@ -16,17 +16,27 @@
   <%= f.submit "検索" %>
 <% end %>
 
-<% if @results.length !=0 %>
-  <% @results.each do |result| %>
-    <br>
-    <tr>
-      <th><%= link_to result.name, mountain_path(result.id) %></th>
-      <th><%= result.area.name %></th>
-      <th><%= result.elevation.name %></th>
-      <th><%= result.climb_time.name %></th>
+<table>
+  <thead>
+    <tr class="text-center">
+      <th>山の名前</th>
+      <th>地域</th>
+      <th>標高</th>
+      <th>総歩行時間</th>
     </tr>
+  </thead>
+  <% if @results.length !=0 %>
+    <% @results.each do |result| %>
+      <tbody>
+        <tr>
+          <td><%= link_to result.name, mountain_path(result.id) %></td>
+          <td><%= result.area.name %></td>
+          <td><%= result.elevation.name %></td>
+          <td><%= result.climb_time.name %></td>
+        </tr>
+      </tbody>
+    <% end %>
+  <% else %>
+    <div>ごめんなさい、該当する山が見つかりませんでした…</div>
   <% end %>
-<% else %>
-  <div>ごめんなさい、該当する山が見つかりませんでした…</div>
-<% end %>
-
+</table>
