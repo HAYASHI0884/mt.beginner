@@ -76,3 +76,4 @@ Mountain.create(name:'榛名山(はるなさん)', area_id:'10', elevation_id:'2
 Mountain.create(name:'妙義山(みょうぎさん)', area_id:'10', elevation_id:'2', climb_time_id:'3')
 Mountain.create(name:'男体山(なんたいさん)', area_id:'9', elevation_id:'3', climb_time_id:'4')
 Mountain.create(name:'富士山(ふじさん)吉田コース', area_id:'19', elevation_id:'4', climb_time_id:'5')
+Mountain.create(name:'大小山(だいしょうやま)',area_id:'9', elevation_id:'1', climb_time_id:'2')
