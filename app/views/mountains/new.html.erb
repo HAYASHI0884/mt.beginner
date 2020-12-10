@@ -1,0 +1,22 @@
+<h1>管理者新規投稿ページ</h1>
+
+<%= form_with model: @mountain, local:true do |f| %>
+  <%= f.label :image %>
+  <%= f.file_field :image %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :area_id, "地域" %>
+  <%= f.collection_select :area_id, @area, :id, :name, include_blank: "指定なし" %>
+
+  <%= f.label :elevation_id, "標高" %>
+  <%= f.collection_select :elevation_id, @elevation, :id, :name, include_blank: "指定なし" %>
+
+  <%= f.label :climb_time_name, "総歩行時間" %>
+  <%= f.collection_select :climb_time_id, @climb_time, :id, :name, include_blank: "指定なし" %>
+
+  <%= f.submit "投稿" %>
+<% end %>
+
+<%= link_to "戻る", "/mountains/:mountain_id/admin/mountains" %>

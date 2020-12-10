@@ -1,15 +1,33 @@
 class MountainsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_mountain, only: [:show, :edit, :update]
-  before_action :user_admin, only: [:edit]
+  before_action :set_mountain, only: [:show, :edit, :update, :destroy]
+  before_action :user_admin, only: [:edit, :new]
+  before_action :set_column, only: [:index, :new]
 
   def index
     @m = Mountain.ransack(params[:q])
     @results = @m.result.includes(:area, :elevation, :climb_time)
-    set_column
   end
 
   def show
+  end
+
+  def new
+    @mountain = Mountain.new
+  end
+
+  def create
+    @mountain = Mountain.new(mountain_params)
+    if @mountain.save
+      redirect_to "/mountains/:mountain_id/admin/mountains"
+    else
+      render action: :new
+    end
+  end
+
+  def destroy
+    @mountain.destroy
+    redirect_to "/mountains/:mountain_id/admin/mountains"
   end
 
   def edit
@@ -30,7 +48,7 @@ class MountainsController < ApplicationController
   end
 
   def mountain_params
-    params.require(:mountain).permit(:image)
+    params.require(:mountain).permit(:name, :area_id, :elevation_id, :climb_time_id, :image)
   end
 
   def set_column
@@ -42,9 +60,7 @@ class MountainsController < ApplicationController
   def user_admin
     @users = User.all
     if current_user.admin == false
-        redirect_to pages_top_path
-    else
-        render action: "edit"
+      redirect_to pages_top_path
     end
  end
 end

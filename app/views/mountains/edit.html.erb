@@ -2,6 +2,8 @@
 
 <h3><%= @mountain.name %>の編集</h3>
 
+<%= link_to "削除", mountain_path, method: :delete, data: { confirm: 'Are you sure?' } %>
+
 <%= form_with model:@mountain, local:true do |f|%>
 
   <%= f.label :image, "山の写真" %><br/>

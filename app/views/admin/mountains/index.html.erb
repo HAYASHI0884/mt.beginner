@@ -1,5 +1,7 @@
 <h1>管理者ページ</h1>
 
+<%= link_to "山の新規投稿", "/mountains/new" %>
+
 <%= search_form_for @m do |f| %>
   <%= f.label :name_cont, "山の名前" %>
   <%= f.search_field :name_cont %>

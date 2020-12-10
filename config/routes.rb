@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   root to: 'pages#index'
   get "pages/top"
   resources :pages, only:[:index, :show, :edit, :update]
-  resources :mountains, only:[:index, :show, :edit, :update] do
+  resources :mountains do
     namespace :admin do
-      resources :mountains
+      resources :mountains, only:[:index]
     end
   end
 
