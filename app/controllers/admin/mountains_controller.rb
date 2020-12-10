@@ -1,4 +1,5 @@
 class Admin::MountainsController < ApplicationController
+  before_action :authenticate_user!
   before_action :if_not_admin
 
   def index

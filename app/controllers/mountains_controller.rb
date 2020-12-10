@@ -1,5 +1,6 @@
 class MountainsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_mountain, only: [:show, :edit, :update]
   before_action :user_admin, only: [:edit]
 
   def index
@@ -9,14 +10,28 @@ class MountainsController < ApplicationController
   end
 
   def show
-    @mountain = Mountain.find(params[:id])
   end
 
   def edit
   end
 
+  def update
+    if @mountain.update(mountain_params)
+      redirect_to "/mountains/:mountain_id/admin/mountains"
+    else
+      render edit_mountain_path(@mountain.id)
+    end
+  end
 
   private
+
+  def set_mountain
+    @mountain = Mountain.find(params[:id])
+  end
+
+  def mountain_params
+    params.require(:mountain).permit(:image)
+  end
 
   def set_column
     @area = Area.all

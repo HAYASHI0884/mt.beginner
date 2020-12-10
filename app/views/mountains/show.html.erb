@@ -1,2 +1,5 @@
 <div class="search-image">
+<% if @mountain.image.attached? %>
+  <%= image_tag @mountain.image.variant(combine_options:{gravity: :center, resize:"400x400^",crop:"400x400+0+0"}).processed %>
+<% end %>
 <h1><%= @mountain.name %></h1>

@@ -1,1 +1,14 @@
 <h1>管理者編集ページ</h1>
+
+<h3><%= @mountain.name %>の編集</h3>
+
+<%= form_with model:@mountain, local:true do |f|%>
+
+  <%= f.label :image, "山の写真" %><br/>
+  <%= f.file_field :image %>
+
+  <%= f.submit "完了" %>
+
+<% end %>
+
+<%= link_to "戻る", "/mountains/:mountain_id/admin/mountains" %>
