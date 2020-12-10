@@ -2,7 +2,7 @@ class MountainsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_mountain, only: [:show, :edit, :update, :destroy]
   before_action :user_admin, only: [:edit, :new]
-  before_action :set_column, only: [:index, :new]
+  before_action :set_column, only: [:index, :new, :edit]
 
   def index
     @m = Mountain.ransack(params[:q])
