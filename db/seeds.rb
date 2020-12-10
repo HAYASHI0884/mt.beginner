@@ -5,6 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+User.create(name:"管理者", email: "admin@example.com", password:"11111111", password_confirmation: "11111111", admin: true)
+
 Area.create(name:'北海道')
 Area.create(name:'青森県')
 Area.create(name:'岩手県')
