@@ -29,6 +29,8 @@ class TweetsController < ApplicationController
   end
 
   def destroy
+    @tweet.destroy
+    redirect_to pages_top_path
   end
 
   private

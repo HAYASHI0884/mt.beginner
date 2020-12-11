@@ -18,8 +18,9 @@
       <%= f.text_area :introduction, size:"100x3", class:"box-shadow" %>
     </div>
 
-    <div class="mb-3">
-      <%= f.submit "完了", class:"box-shadow px-3 py-1 mb-5" %>
+    <div class="mb-5 d-flex align-items-center justify-content-center">
+      <%= f.submit "完了", class:"box-shadow px-3 py-1 mx-5" %>
+      <%= link_to "削除", tweet_path, method: :delete, data: { confirm: '本当に削除しますか?' }, class:"box-shadow btn btn-danger px-3 mx-5" %>
     </div>
   <% end %>
 
