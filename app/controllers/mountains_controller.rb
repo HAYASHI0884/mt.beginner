@@ -19,7 +19,7 @@ class MountainsController < ApplicationController
   def create
     @mountain = Mountain.new(mountain_params)
     if @mountain.save
-      redirect_to "/mountains/:mountain_id/admin/mountains"
+      redirect_to '/mountains/:mountain_id/admin/mountains'
     else
       render action: :new
     end
@@ -27,7 +27,7 @@ class MountainsController < ApplicationController
 
   def destroy
     @mountain.destroy
-    redirect_to "/mountains/:mountain_id/admin/mountains"
+    redirect_to '/mountains/:mountain_id/admin/mountains'
   end
 
   def edit
@@ -35,7 +35,7 @@ class MountainsController < ApplicationController
 
   def update
     if @mountain.update(mountain_params)
-      redirect_to "/mountains/:mountain_id/admin/mountains"
+      redirect_to '/mountains/:mountain_id/admin/mountains'
     else
       render edit_mountain_path(@mountain.id)
     end
@@ -59,8 +59,6 @@ class MountainsController < ApplicationController
 
   def user_admin
     @users = User.all
-    if current_user.admin == false
-      redirect_to pages_top_path
-    end
- end
+    redirect_to pages_top_path if current_user.admin == false
+  end
 end
