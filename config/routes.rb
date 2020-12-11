@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :tweets
+  resources :tweets, only:[:show, :edit, :update, :create, :update, :destroy]
   devise_for :users
   root to: 'pages#index'
   get "pages/top"
