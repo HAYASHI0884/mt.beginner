@@ -1,4 +1,5 @@
 class TweetsController < ApplicationController
+  before_action :set_tweet, only:[:show, :edit, :update, :destroy]
 
   def show
   end
@@ -20,23 +21,14 @@ class TweetsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @tweet.update(tweet_params)
-        format.html { redirect_to @tweet, notice: 'Tweet was successfully updated.' }
-        format.json { render :show, status: :ok, location: @tweet }
-      else
-        format.html { render :edit }
-        format.json { render json: @tweet.errors, status: :unprocessable_entity }
-      end
+    if @tweet.update(tweet_params)
+      redirect_to tweet_path(@tweet.id)
+    else
+      render :edit
     end
   end
 
   def destroy
-    @tweet.destroy
-    respond_to do |format|
-      format.html { redirect_to tweets_url, notice: 'Tweet was successfully destroyed.' }
-      format.json { head :no_content }
-    end
   end
 
   private

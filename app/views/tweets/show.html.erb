@@ -1,2 +1,23 @@
 <div class="tweet-image">
-<h1>写真詳細ページ</h1>
+<h1 class="text-white text-shadow sevenwords-bg">写真詳細ページ</h1>
+
+<div class="d-flex align-items-center justify-content-center flex-column">
+  <div class="m-4">
+    <% if @tweet.image.attached? %>
+      <%= image_tag @tweet.image.variant(combine_options:{gravity: :center, resize:"400x400^",crop:"400x400+0+0"}).processed %>
+    <% end %>
+  </div>
+
+  <h1 class="text-center text-white text-shadow mb-5"><%= @tweet.title %></h1>
+
+  <div class="bg-white border border-dark prf-size box-shadow">
+    <%= @tweet.introduction %>
+  </div>
+
+  <div class="m-5">
+    <% if current_user.id == @tweet.user_id %>
+      <%= link_to "編集", edit_tweet_path(@tweet.id), class:"btn btn-light rounded-pill px-3 box-shadow" %>
+    <% end %>
+  </div>
+
+</div>
