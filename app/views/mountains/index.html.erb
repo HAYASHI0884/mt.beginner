@@ -1,42 +1,56 @@
 <div class="search-image">
-<h1>山検索機能ページ</h1>
-<%= search_form_for @m do |f| %>
-  <%= f.label :name_cont, "山の名前" %>
-  <%= f.search_field :name_cont %>
 
-  <%= f.label :area_name_eq, "地域" %>
-  <%= f.collection_select :area_name_eq, @area, :name, :name, include_blank: "指定なし" %>
+<div class="d-flex align-items-center justify-content-center flex-column">
+  <div class="display-4 m-5 text-white text-shadow font-weight-bold">登る山を探しましょう！</div>
 
-  <%= f.label :elevation_name_eq, "標高" %>
-  <%= f.collection_select :elevation_name_eq, @elevation, :name, :name, include_blank: "指定なし" %>
+  <%= search_form_for @m, class:"d-flex align-items-center justify-content-center text-white text-shadow h5 mb-4" do |f| %>
+    <div class="mx-5">
+      <%= f.label :name_cont, "山の名前", class:"mr-2" %>
+      <%= f.search_field :name_cont %>
+    </div>
 
-  <%= f.label :climb_time_name_eq, "総歩行時間" %>
-  <%= f.collection_select :climb_time_name_eq, @climb_time, :name, :name, include_blank: "指定なし" %>
+    <div class="mr-5">
+      <%= f.label :area_name_eq, "地域", class:"mr-2" %>
+      <%= f.collection_select :area_name_eq, @area, :name, :name, include_blank: "指定なし" %>
+    </div>
 
-  <%= f.submit "検索" %>
-<% end %>
+    <div class="mr-5">
+      <%= f.label :elevation_name_eq, "標高", class:"mr-2" %>
+      <%= f.collection_select :elevation_name_eq, @elevation, :name, :name, include_blank: "指定なし" %>
+    </div>
 
-<table>
-  <thead>
-    <tr class="text-center">
-      <th>山の名前</th>
-      <th>地域</th>
-      <th>標高</th>
-      <th>総歩行時間</th>
-    </tr>
-  </thead>
-  <% if @results.length !=0 %>
-    <% @results.each do |result| %>
-      <tbody>
-        <tr>
-          <td><%= link_to result.name, mountain_path(result.id) %></td>
-          <td><%= result.area.name %></td>
-          <td><%= result.elevation.name %></td>
-          <td><%= result.climb_time.name %></td>
-        </tr>
-      </tbody>
-    <% end %>
-  <% else %>
-    <div>ごめんなさい、該当する山が見つかりませんでした…</div>
+    <div class="mr-5">
+      <%= f.label :climb_time_name_eq, "総歩行時間", class:"mr-2" %>
+      <%= f.collection_select :climb_time_name_eq, @climb_time, :name, :name, include_blank: "指定なし" %>
+    </div>
+
+    <%= f.submit "検索", class:"mr-5" %>
   <% end %>
-</table>
+
+  <div class="text-white text-center">
+    <table class="table_sticky">
+      <% if @results.length !=0 %>
+        <thead class="text-shadow h3">
+          <tr>
+            <th class="p-2">山の名前</th>
+            <th class="p-2">地域</th>
+            <th class="p-2">標高</th>
+            <th class="p-2">総歩行時間</th>
+          </tr>
+        </thead>
+        <tbody class="bg-search h5">
+          <% @results.each do |result| %>
+            <tr>
+              <td class="p-2"><%= link_to result.name, mountain_path(result.id), class:"text-white" %></td>
+              <td class="p-2"><%= result.area.name %></td>
+              <td class="p-2"><%= result.elevation.name %></td>
+              <td class="p-2"><%= result.climb_time.name %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      <% else %>
+        <div class="h1 text-shadow mt-5">ごめんなさい、該当する山が見つかりませんでした…</div>
+      <% end %>
+    </table>
+  </div>
+</div>
