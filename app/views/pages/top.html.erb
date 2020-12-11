@@ -1,1 +1,11 @@
 <div class="top-image">
+<h1>皆様の投稿</h1>
+<% @tweets.each do |tweet| %>
+    <div class="d-inline-block">
+      <div class="d-flex justify-content-center align-items-center flex-column">
+        <div><a href=""><%= image_tag tweet.image.variant(combine_options:{gravity: :center, resize:"200x200^",crop:"200x200+0+0"}).processed %></a></div>
+        <div><%= tweet.title %></div>
+        <div><%= link_to tweet.user.name, page_path(tweet.user.id) %></div>
+      </div>
+    </div>
+<% end %>

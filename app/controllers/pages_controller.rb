@@ -5,6 +5,7 @@ class PagesController < ApplicationController
   end
 
   def top
+    @tweets = Tweet.all
   end
 
   def show
