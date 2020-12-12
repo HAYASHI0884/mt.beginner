@@ -2,7 +2,7 @@
 
 <%= link_to "山の新規投稿", "/mountains/new" %>
 
-<%= search_form_for @m do |f| %>
+<%= search_form_for @mountains do |f| %>
   <%= f.label :name_cont, "山の名前" %>
   <%= f.search_field :name_cont %>
 
@@ -27,8 +27,8 @@
       <th>総歩行時間</th>
     </tr>
   </thead>
-  <% if @results.length !=0 %>
-    <% @results.each do |result| %>
+  <% if @mountain_results.length !=0 %>
+    <% @mountain_results.each do |result| %>
       <tbody>
         <tr>
           <td><%= link_to result.name, edit_mountain_path(result.id) %></td>

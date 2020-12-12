@@ -2,11 +2,11 @@ class MountainsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_mountain, only: [:show, :edit, :update, :destroy]
   before_action :user_admin, only: [:edit, :new]
-  before_action :set_column, only: [:index, :new, :edit]
+  before_action :set_column, only: [:index, :new, :edit, :create]
 
   def index
-    @m = Mountain.ransack(params[:q])
-    @results = @m.result.includes(:area, :elevation, :climb_time)
+    @mountains = Mountain.ransack(params[:q])
+    @mountain_results = @mountains.result.includes(:area, :elevation, :climb_time)
   end
 
   def show

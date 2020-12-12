@@ -3,8 +3,8 @@ class Admin::MountainsController < ApplicationController
   before_action :if_not_admin
 
   def index
-    @m = Mountain.ransack(params[:q])
-    @results = @m.result.includes(:area, :elevation, :climb_time)
+    @mountains = Mountain.ransack(params[:q])
+    @mountain_results = @mountains.result.includes(:area, :elevation, :climb_time)
     set_column
   end
 
