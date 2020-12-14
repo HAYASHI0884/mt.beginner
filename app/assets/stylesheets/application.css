@@ -249,3 +249,18 @@ body.noscroll{
   width: 285px;
   background: rgba(55, 75, 54, 0.8);
 }
+
+.tweet-bg {
+  width: 200px;
+  background: rgba(55, 75, 54, 0.8);
+}
+
+.tweet-scroll {
+  height: 260px;
+  width: 100vw;
+  overflow: scroll;
+}
+
+.tweet-bar-bg {
+  background-color: #852b01d7;
+}
