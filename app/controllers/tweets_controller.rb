@@ -1,4 +1,5 @@
 class TweetsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_tweet, only:[:show, :edit, :update, :destroy]
 
   def show
@@ -9,6 +10,7 @@ class TweetsController < ApplicationController
   end
 
   def edit
+    redirect_to pages_top_path unless current_user.id == @tweet.user.id
   end
 
   def create
