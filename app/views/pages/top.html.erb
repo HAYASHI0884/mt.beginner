@@ -10,7 +10,9 @@
     <% @tweets.each do |tweet| %>
       <div class="d-inline-block m-1">
         <div class="d-flex justify-content-center align-items-center flex-column">
-          <div><a href="/tweets/<%= tweet.id %>"><%= image_tag tweet.image.variant(combine_options:{gravity: :center, resize:"200x200^",crop:"200x200+0+0"}).processed %></a></div>
+          <% if tweet.image.attached? %>
+            <div><a href="/tweets/<%= tweet.id %>"><%= image_tag tweet.image.variant(combine_options:{gravity: :center, resize:"200x200^",crop:"200x200+0+0"}).processed %></a></div>
+          <% end %>
           <div class="tweet-bg text-center text-white text-shadow mt-2">
             <div><%= tweet.title %></div>
             <div><%= link_to tweet.user.name, page_path(tweet.user.id) %></div>
