@@ -15,24 +15,30 @@ class TweetsController < ApplicationController
 
   def create
     @tweet = Tweet.create(tweet_params)
-    if @tweet.save
-      redirect_to pages_top_path
-    else
-      render :new
+    if @tweet.present?
+      if @tweet.save
+        redirect_to pages_top_path
+      else
+        render :new
+      end
     end
   end
 
   def update
-    if @tweet.update(tweet_params)
-      redirect_to tweet_path(@tweet.id)
-    else
-      render :edit
+    if @tweet.present?
+      if @tweet.update(tweet_params)
+        redirect_to tweet_path(@tweet.id)
+      else
+        render :edit
+      end
     end
   end
 
   def destroy
-    @tweet.destroy
-    redirect_to pages_top_path
+    if @tweet.present?
+      @tweet.destroy
+      redirect_to pages_top_path
+    end
   end
 
   private
