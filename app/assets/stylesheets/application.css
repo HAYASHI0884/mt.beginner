@@ -256,11 +256,24 @@ body.noscroll{
 }
 
 .tweet-scroll {
-  height: 260px;
+  height: 270px;
   width: 100vw;
   overflow: scroll;
 }
 
 .tweet-bar-bg {
   background-color: #571c00d2;
+}
+
+::-webkit-scrollbar {
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 10px;
 }
