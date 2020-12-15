@@ -1,11 +1,11 @@
 class PagesController < ApplicationController
-  before_action :set_user, only:[:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update]
 
   def index
   end
 
   def top
-    @tweets = Tweet.includes(:user).order(id: "DESC")
+    @tweets = Tweet.includes(:user).order(id: 'DESC')
   end
 
   def show

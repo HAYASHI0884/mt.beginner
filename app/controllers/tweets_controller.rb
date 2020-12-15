@@ -1,6 +1,6 @@
 class TweetsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_tweet, only:[:show, :edit, :update, :destroy]
+  before_action :set_tweet, only: [:show, :edit, :update, :destroy]
 
   def show
   end
@@ -36,11 +36,12 @@ class TweetsController < ApplicationController
   end
 
   private
-    def set_tweet
-      @tweet = Tweet.find(params[:id])
-    end
 
-    def tweet_params
-      params.require(:tweet).permit(:title, :introduction, :image).merge(user_id: current_user.id)
-    end
+  def set_tweet
+    @tweet = Tweet.find(params[:id])
+  end
+
+  def tweet_params
+    params.require(:tweet).permit(:title, :introduction, :image).merge(user_id: current_user.id)
+  end
 end
