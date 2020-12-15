@@ -250,9 +250,9 @@ body.noscroll{
   background: rgba(55, 75, 54, 0.8);
 }
 
-.tweet-bg {
+.tweet-title-bg {
   width: 200px;
-  background: rgba(55, 75, 54, 0.8);
+  background: rgb(110, 153, 108);
 }
 
 .tweet-scroll {
@@ -262,7 +262,7 @@ body.noscroll{
 }
 
 .tweet-bar-bg {
-  background-color: #571c00d2;
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
 ::-webkit-scrollbar {
@@ -282,4 +282,8 @@ body.noscroll{
   height: auto;
   width: 280px;
   background: rgba(55, 75, 54, 0.8);
+}
+
+.image-shadow {
+  filter: drop-shadow(4px 4px rgba(0,0,0,0.4));
 }

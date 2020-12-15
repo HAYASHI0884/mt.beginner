@@ -8,12 +8,12 @@
 <div class="tweet-scroll d-flex justify-content-start align-items-center tweet-bar-bg">
   <% if @tweets.length !=0 %>
     <% @tweets.each do |tweet| %>
-      <div class="d-inline-block m-1">
-        <div class="d-flex justify-content-center align-items-center flex-column">
+      <div class="d-inline-block mx-3">
+        <div class="d-flex justify-content-center align-items-center flex-column image-shadow">
           <% if tweet.image.attached? %>
-            <div><a href="/tweets/<%= tweet.id %>"><%= image_tag tweet.image.variant(combine_options:{gravity: :center, resize:"200x200^",crop:"200x200+0+0"}).processed %></a></div>
+            <div class=""><a href="/tweets/<%= tweet.id %>"><%= image_tag tweet.image.variant(combine_options:{gravity: :center, resize:"200x200^",crop:"200x200+0+0"}).processed %></a></div>
           <% end %>
-          <div class="tweet-bg text-center text-white text-shadow mt-2">
+          <div class="tweet-title-bg text-center text-white text-shadow mt-2 rounded-pill">
             <div class="h4"><%= tweet.title %></div>
             <div><%= link_to tweet.user.name, page_path(tweet.user.id), class:"text-white" %></div>
           </div>

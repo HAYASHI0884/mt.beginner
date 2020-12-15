@@ -1,7 +1,7 @@
 <div class="mypage-image">
 
 <div class="d-flex align-items-center justify-content-center flex-column">
-  <div class="m-4">
+  <div class="m-4 image-shadow">
     <% if @user.image.attached? %>
       <%= image_tag @user.image.variant(combine_options:{gravity: :center, resize:"400x400^",crop:"400x400+0+0"}).processed %>
     <% end %>
