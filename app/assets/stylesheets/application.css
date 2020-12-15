@@ -277,3 +277,7 @@ body.noscroll{
   background-color: white;
   border-radius: 10px;
 }
+
+.bg-error {
+  background: rgba(55, 75, 54, 0.8);
+}
