@@ -1,6 +1,9 @@
 <div class="top-image">
 
-<h1 class="text-white text-shadow fivewords-bg mb-3">皆様の投稿</h1>
+<div class="mb-3 d-flex justify-content-start align-items-center">
+  <h1 class="text-white text-shadow fivewords-bg">皆様の投稿</h1>
+  <%= link_to "新規投稿はこちら",new_tweet_path, class:"btn btn-light rounded-pill px-2 mx-4 box-shadow" %>
+</div>
 
 <div class="tweet-scroll d-flex justify-content-start align-items-center tweet-bar-bg">
   <% if @tweets.length !=0 %>
