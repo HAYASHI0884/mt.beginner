@@ -258,7 +258,7 @@ body.noscroll{
 .tweet-scroll {
   height: 285px;
   width: 99vw;
-  overflow: scroll;
+  overflow-x: scroll;
 }
 
 .tweet-bar-bg {
