@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   end
 
   def top
-    @tweets = Tweet.all
+    @tweets = Tweet.includes(:user)
   end
 
   def show
