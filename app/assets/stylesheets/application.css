@@ -279,5 +279,7 @@ body.noscroll{
 }
 
 .bg-error {
+  height: auto;
+  width: 280px;
   background: rgba(55, 75, 54, 0.8);
 }
