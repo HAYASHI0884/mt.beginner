@@ -256,8 +256,8 @@ body.noscroll{
 }
 
 .tweet-scroll {
-  height: 270px;
-  width: 100vw;
+  height: 285px;
+  width: 99vw;
   overflow: scroll;
 }
 
