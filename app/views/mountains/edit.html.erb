@@ -1,0 +1,28 @@
+<h1>管理者編集ページ</h1>
+
+<h3><%= @mountain.name %>の編集</h3>
+
+<%= link_to "削除", mountain_path, method: :delete, data: { confirm: '本当に削除しますか?' } %>
+
+<%= form_with model:@mountain, local:true do |f|%>
+
+  <%= f.label :image, "山の写真" %><br/>
+  <%= f.file_field :image %>
+
+  <%= f.label :name, "山の名前" %>
+  <%= f.text_field :name %>
+
+  <%= f.label :area_id, "地域" %>
+  <%= f.collection_select :area_id, @area, :id, :name, include_blank: "指定なし" %>
+
+  <%= f.label :elevation_id, "標高" %>
+  <%= f.collection_select :elevation_id, @elevation, :id, :name, include_blank: "指定なし" %>
+
+  <%= f.label :climb_time_name, "総歩行時間" %>
+  <%= f.collection_select :climb_time_id, @climb_time, :id, :name, include_blank: "指定なし" %>
+
+  <%= f.submit "完了" %>
+
+<% end %>
+
+<%= link_to "戻る", "/mountains/:mountain_id/admin/mountains" %>

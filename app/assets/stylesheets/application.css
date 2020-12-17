@@ -233,6 +233,50 @@ body.noscroll{
   background: rgba(55, 75, 54, 0.8);
 }
 
+/* 山検索機能 */
+.search-image {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  min-height: 300px;
+  background-image: url('search.jpg');
+  background-size: cover;
+  z-index: 0;
+}
+
+.search-image:before{
+  content: '';
+  background: inherit;
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+  position: absolute;
+  top: 0px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: -1;
+}
+
+.bg-search {
+  background: rgba(55, 75, 54, 0.8);
+ }
+
+.table_sticky {
+  display: block;
+  overflow-y: scroll;
+  height: calc(200vh/3);
+}
+
+.table_sticky thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #0e4e1e;
+}
+
 /* 写真投稿機能 */
 .tweet-image {
   position: relative;

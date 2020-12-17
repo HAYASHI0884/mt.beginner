@@ -1,0 +1,44 @@
+<h1>管理者トップページ</h1>
+
+<%= link_to "山の新規投稿", "/mountains/new" %>
+
+<%= search_form_for @mountains do |f| %>
+  <%= f.label :name_cont, "山の名前" %>
+  <%= f.search_field :name_cont %>
+
+  <%= f.label :area_name_eq, "地域" %>
+  <%= f.collection_select :area_name_eq, @area, :name, :name, include_blank: "指定なし" %>
+
+  <%= f.label :elevation_name_eq, "標高" %>
+  <%= f.collection_select :elevation_name_eq, @elevation, :name, :name, include_blank: "指定なし" %>
+
+  <%= f.label :climb_time_name_eq, "総歩行時間" %>
+  <%= f.collection_select :climb_time_name_eq, @climb_time, :name, :name, include_blank: "指定なし" %>
+
+  <%= f.submit "検索" %>
+<% end %>
+
+<table>
+  <thead>
+    <tr class="text-center">
+      <th>山の名前</th>
+      <th>地域</th>
+      <th>標高</th>
+      <th>総歩行時間</th>
+    </tr>
+  </thead>
+  <% if @mountain_results.length !=0 %>
+    <% @mountain_results.each do |result| %>
+      <tbody>
+        <tr>
+          <td><%= link_to result.name, edit_mountain_path(result.id) %></td>
+          <td><%= result.area.name %></td>
+          <td><%= result.elevation.name %></td>
+          <td><%= result.climb_time.name %></td>
+        </tr>
+      </tbody>
+    <% end %>
+  <% else %>
+    <div>ごめんなさい、該当する山が見つかりませんでした…</div>
+  <% end %>
+</table>
