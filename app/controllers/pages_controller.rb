@@ -6,6 +6,7 @@ class PagesController < ApplicationController
   end
 
   def top
+    @tweets = Tweet.includes(:user).order(id: 'DESC')
   end
 
   def show
