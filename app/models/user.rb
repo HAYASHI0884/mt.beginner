@@ -9,4 +9,6 @@ class User < ApplicationRecord
 
   has_one_attached :image
   has_many :tweets
+  has_many :messages, dependent: :destroy
+  has_many :entries, dependent: :destroy
 end
