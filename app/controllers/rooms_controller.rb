@@ -13,10 +13,12 @@ class RoomsController < ApplicationController
 
   def create
     @room = Room.new(room_params)
-    if @room.save
-      redirect_to pages_top_path
-    else
-      render :new
+    if @room.present?
+      if @room.save
+        redirect_to pages_top_path
+      else
+        render :new
+      end
     end
   end
 
@@ -29,6 +31,6 @@ class RoomsController < ApplicationController
   private
 
   def room_params
-    params.require(:room).permit(:name, user_ids:[])
+    params.require(:room).permit(:name, user_ids: []).merge(user_id: current_user.id)
   end
 end
