@@ -331,3 +331,26 @@ body.noscroll{
 .image-shadow {
   filter: drop-shadow(4px 4px rgba(0,0,0,0.4));
 }
+
+/* チャットルーム作成機能 */
+.chat-image {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  min-height: 300px;
+  background-image: url('chat.jpg');
+  background-size: cover;
+  z-index: 0;
+}
+
+.fourteenwords-bg {
+  height: auto;
+  width: 560px;
+  background: rgba(55, 75, 54, 0.8);
+}
+
+.chat-bg {
+  background: rgba(55, 75, 54, 0.8);
+  height: 300px;
+  width: 500px;
+}
