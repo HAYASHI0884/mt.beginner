@@ -1,12 +1,6 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!
 
-  def index
-    @message = Message.new
-    @room = Room.find(params[:room_id])
-    @messages = @room.messages.includes(:user)
-  end
-
   def new
     @room = Room.new
   end

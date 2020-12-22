@@ -1,0 +1,19 @@
+<div class="chat-image">
+
+<div class="text-white text-shadow">
+   <div><%= @room.name %></div>
+  <%= link_to "チャットを終了する", room_path(@room), method: :delete %>
+</div>
+
+<% @messages.each do |message| %>
+  <%= message.user.name %>
+  <%= message.created_at.strftime('%Y/%m/%d　%H:%M') %>
+  <%= message.text %>
+  <%= image_tag message.image.variant(resize: '500x500') if message.image.attached? %>
+<% end %>
+
+<%= form_with model: [@room, @message], local: true do |f| %>
+  <%= f.text_field :text, placeholder: '文字の入力' %>
+  <%= f.file_field :image %>
+  <%= f.submit '送信'%>
+<% end %>
