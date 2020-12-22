@@ -36,7 +36,7 @@
       <div class="topchat-bg rounded d-flex justify-content-center align-items-center flex-column m-3 text-center text-white text-shadow">
         <div class="m-3">
           <div>Room name</div>
-          <div class="h3"><%= room.name%></div>
+          <%= link_to room.name, room_messages_path(room.id), class:"h3 text-white" %>
         </div>
         <div class="m-3">
           <div>Host</div>
