@@ -45,6 +45,7 @@
         <% else %>
             <%= link_to image_tag("rogomark.png", class:"size"), root_path %>
             <div>
+              <div type="button" class="btn btn-light rounded-pill px-3 mx-3"><%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "text-reset font-weight-bold" %></div>
               <div type="button" class="btn btn-light rounded-pill px-3 mx-3"><%= link_to 'ログイン', new_user_session_path, class: "text-reset font-weight-bold" %></div>
               <div type="button" class="btn btn-light rounded-pill px-3 mx-3"><%= link_to '新規登録', new_user_registration_path, class: "text-reset font-weight-bold" %></div>
             </div>

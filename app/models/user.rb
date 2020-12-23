@@ -11,4 +11,10 @@ class User < ApplicationRecord
   has_many :tweets, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
+
+  def self.guest
+    find_or_create_by!(name:'ゲストユーザー', email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+    end
+  end
 end
