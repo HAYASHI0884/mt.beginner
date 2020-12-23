@@ -6,6 +6,6 @@ class Message < ApplicationRecord
   has_one_attached :image, dependent: :destroy
 
   def was_attached?
-    self.image.attached?
+    image.attached?
   end
 end
