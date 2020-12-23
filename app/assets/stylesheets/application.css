@@ -366,3 +366,36 @@ body.noscroll{
   width: 300px;
   background: rgb(110, 153, 108);
 }
+
+.roomname-bg {
+  height: auto;
+  display:inline-block;
+  background: rgba(55, 75, 54, 0.8);
+}
+
+.message-bg {
+  background-color: rgba(102, 102, 102, 0.8);
+}
+
+.message-scroll {
+  display: block;
+  overflow-y: scroll;
+  height: 90%;
+}
+
+.message-field {
+  position: fixed;
+  bottom: 0;
+  background-color: rgb(243, 243, 243);
+  height: 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.form-image {
+  background-color: rgb(4, 139, 94);
+  width: 60px;
+  text-align: center;
+}

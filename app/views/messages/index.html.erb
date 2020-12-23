@@ -1,19 +1,28 @@
 <div class="chat-image">
 
-<div class="text-white text-shadow">
-   <div><%= @room.name %></div>
-  <%= link_to "チャットを終了する", room_path(@room), method: :delete %>
+<div class="text-white d-flex align-items-center justify-content-between">
+  <h1 class="roomname-bg text-shadow"><%= @room.name %></h1>
+  <%= link_to "チャットを終了する(ルームの削除)", room_path(@room), method: :delete, class:"mr-4 btn btn-light rounded-pill px-2 mx-4 box-shadow" %>
 </div>
 
-<% @messages.each do |message| %>
-  <%= message.user.name %>
-  <%= message.created_at.strftime('%Y/%m/%d　%H:%M') %>
-  <%= message.text %>
-  <%= image_tag message.image.variant(resize: '500x500') if message.image.attached? %>
+<div class="message-bg message-scroll">
+  <% @messages.each do |message| %>
+    <div class="text-white text-shadow mb-3">
+      <%= message.user.name %>
+      <%= message.created_at.strftime('%Y/%m/%d　%H:%M') %>
+      <%= message.text %>
+      <%= image_tag message.image.variant(resize: '200x200') if message.image.attached? %>
+    </div>
+  <% end %>
+</div>
+
+
+<%= form_with model: [@room, @message], local: true, class:"message-field" do |f| %>
+  <%= f.text_field :text, placeholder: ' 文字の入力', size:'100' %>
+  <label class="form-image p-2 m-3 rounded box-shadow">
+    <div class="text-white">画像</div>
+    <%= f.file_field :image, class:"d-none" %>
+  </label>
+  <%= f.submit '送信', class:"mr-5 px-2 py-1 box-shadow" %>
 <% end %>
 
-<%= form_with model: [@room, @message], local: true do |f| %>
-  <%= f.text_field :text, placeholder: '文字の入力' %>
-  <%= f.file_field :image %>
-  <%= f.submit '送信'%>
-<% end %>
