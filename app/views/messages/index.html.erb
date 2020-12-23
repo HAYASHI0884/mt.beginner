@@ -16,7 +16,7 @@
             <%= message.user.name %>
             <%= message.created_at.strftime('%Y/%m/%d　%H:%M') %>
           </div>
-          <div class="text-white text-shadow flex-column">
+          <div class="text-white text-shadow flex-column h5">
             <%= message.text %>
           </div>
           <%= image_tag message.image.variant(resize: '200x200') if message.image.attached? %>
@@ -28,7 +28,7 @@
           <%= message.user.name %>
           <%= message.created_at.strftime('%Y/%m/%d　%H:%M') %>
         </div>
-        <div class="text-white text-shadow">
+        <div class="text-white text-shadow h5">
           <%= message.text %>
         </div>
         <%= image_tag message.image.variant(resize: '200x200') if message.image.attached? %>
