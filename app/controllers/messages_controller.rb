@@ -1,8 +1,12 @@
 class MessagesController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @message = Message.new
     @room = Room.find(params[:room_id])
-    @messages = Message.includes(:user, :room)
+    @messages = @room.messages.includes(:user, :room).order(id: 'DESC')
+    @user = @room.users
+    redirect_to pages_top_path unless @user.include?(current_user)
   end
 
   def create
