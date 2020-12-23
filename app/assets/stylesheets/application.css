@@ -191,6 +191,11 @@ body.noscroll{
   overflow: hidden;
 }
 
+.sixwords-bg {
+  height: auto;
+  width: 245px;
+  background: rgba(55, 75, 54, 0.8);
+}
 /* マイページ */
 .mypage-image {
   position: relative;
