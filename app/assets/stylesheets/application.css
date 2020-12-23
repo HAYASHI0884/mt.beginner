@@ -399,3 +399,7 @@ body.noscroll{
   width: 60px;
   text-align: center;
 }
+
+.text-color {
+  color: rgba(255, 255, 255, 0.6);
+}

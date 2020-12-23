@@ -7,12 +7,31 @@
 
 <div class="message-bg message-scroll">
   <% @messages.each do |message| %>
-    <div class="text-white text-shadow mb-3">
-      <%= message.user.name %>
-      <%= message.created_at.strftime('%Y/%m/%d　%H:%M') %>
-      <%= message.text %>
-      <%= image_tag message.image.variant(resize: '200x200') if message.image.attached? %>
-    </div>
+    <% if message.user == current_user %>
+      <div class="mb-3 d-flex justify-content-end text-right">
+        <div>
+          <div class="text-color">
+            <%= message.user.name %>
+            <%= message.created_at.strftime('%Y/%m/%d　%H:%M') %>
+          </div>
+          <div class="text-white text-shadow flex-column">
+            <%= message.text %>
+          </div>
+          <%= image_tag message.image.variant(resize: '200x200') if message.image.attached? %>
+        </div>
+      </div>
+    <% else %>
+      <div class="mb-3">
+        <div class="text-color">
+          <%= message.user.name %>
+          <%= message.created_at.strftime('%Y/%m/%d　%H:%M') %>
+        </div>
+        <div class="text-white text-shadow">
+          <%= message.text %>
+        </div>
+        <%= image_tag message.image.variant(resize: '200x200') if message.image.attached? %>
+      </div>
+    <% end %>
   <% end %>
 </div>
 
