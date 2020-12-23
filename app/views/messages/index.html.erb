@@ -2,7 +2,9 @@
 
 <div class="text-white d-flex align-items-center justify-content-between">
   <h1 class="roomname-bg text-shadow"><%= @room.name %></h1>
-  <%= link_to "チャットを終了する(ルームの削除)", room_path(@room), method: :delete, class:"mr-4 btn btn-light rounded-pill px-2 mx-4 box-shadow" %>
+  <% if current_user == @room.user %>
+    <%= link_to "チャットを終了する(ルームの削除)", room_path(@room), method: :delete, class:"mr-4 btn btn-danger rounded-pill px-2 mx-4 box-shadow" %>
+  <% end %>
 </div>
 
 <div class="message-bg message-scroll">
