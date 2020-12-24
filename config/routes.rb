@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#index'
   get "pages/top"
+  get "pages/explain"
   resources :pages, only:[:index, :show, :edit, :update]
   resources :mountains do
     namespace :admin do

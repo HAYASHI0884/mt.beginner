@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :explain]
   before_action :set_user, only: [:show, :edit, :update]
 
   def index
@@ -7,6 +7,9 @@ class PagesController < ApplicationController
 
   def top
     @tweets = Tweet.includes(:user).order(id: 'DESC')
+  end
+
+  def explain
   end
 
   def show
