@@ -18,8 +18,10 @@ class RoomsController < ApplicationController
 
   def destroy
     room = Room.find(params[:id])
-    room.destroy
-    redirect_to pages_top_path
+    if room.present?
+      room.destroy
+      redirect_to pages_top_path
+    end
   end
 
   private
