@@ -85,6 +85,12 @@
   background-color: rgba(255, 255, 255, 0.6);
 }
 
+.toptext-bg {
+  height: 50px;
+  width: 300px;
+  background: rgba(55, 75, 54, 0.8);
+}
+
 /* トップページ・ハンバーガーメニュー */
  .top-image {
   position: relative;
