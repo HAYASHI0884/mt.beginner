@@ -204,6 +204,11 @@ body.noscroll{
   overflow: hidden;
 }
 
+.sixwords-bg {
+  height: auto;
+  width: 245px;
+  background: rgba(55, 75, 54, 0.8);
+}
 /* マイページ */
 .mypage-image {
   position: relative;
@@ -308,17 +313,17 @@ body.noscroll{
 }
 
 .tweet-title-bg {
-  width: 200px;
+  width: 300px;
   background: rgb(110, 153, 108);
 }
 
-.tweet-scroll {
+.toppage-scroll {
   height: 285px;
   width: 99vw;
   overflow-x: scroll;
 }
 
-.tweet-bar-bg {
+.top-bar-bg {
   background-color: rgba(255, 255, 255, 0.6);
 }
 
@@ -343,4 +348,76 @@ body.noscroll{
 
 .image-shadow {
   filter: drop-shadow(4px 4px rgba(0,0,0,0.4));
+}
+
+/* チャットルーム作成機能 */
+.chat-image {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  min-height: 300px;
+  background-image: url('chat.jpg');
+  background-size: cover;
+  z-index: 0;
+}
+
+.fourteenwords-bg {
+  height: auto;
+  width: 560px;
+  background: rgba(55, 75, 54, 0.8);
+}
+
+.newchat-bg {
+  background: rgba(55, 75, 54, 0.8);
+  height: auto;
+  width: 500px;
+}
+
+.ninewords-bg {
+  height: auto;
+  width: 365px;
+  background: rgba(55, 75, 54, 0.8);
+}
+
+.topchat-bg {
+  min-height: 200px;
+  min-width: 300px;
+  background: rgb(110, 153, 108);
+}
+
+.roomname-bg {
+  height: auto;
+  display:inline-block;
+  background: rgba(55, 75, 54, 0.8);
+}
+
+.message-bg {
+  background-color: rgba(102, 102, 102, 0.8);
+}
+
+.message-scroll {
+  display: block;
+  overflow-y: scroll;
+  height: 90%;
+}
+
+.message-field {
+  position: fixed;
+  bottom: 0;
+  background-color: rgb(243, 243, 243);
+  height: calc(100vh/20);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.form-image {
+  background-color: rgb(4, 139, 94);
+  width: 60px;
+  text-align: center;
+}
+
+.text-color {
+  color: rgba(255, 255, 255, 0.6);
 }

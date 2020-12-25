@@ -7,6 +7,7 @@ class PagesController < ApplicationController
 
   def top
     @tweets = Tweet.includes(:user).order(id: 'DESC')
+    @rooms = Room.includes(:messages, :entries, :users, :user).order(id: 'DESC')
   end
 
   def explain

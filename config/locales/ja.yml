@@ -1,10 +1,12 @@
 ja:
  activerecord:
    attributes:
-     user:
+      user:
        name: ユーザーネーム
        email: メールアドレス
-     tweet:
+      tweet:
        title: タイトル
        introduction: 説明文
        image: 画像
+      room:
+       name: ルーム名
