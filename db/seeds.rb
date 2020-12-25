@@ -80,3 +80,6 @@ Mountain.create(name:'妙義山(みょうぎさん)', area_id:'10', elevation_id
 Mountain.create(name:'男体山(なんたいさん)', area_id:'9', elevation_id:'3', climb_time_id:'4')
 Mountain.create(name:'富士山(ふじさん)吉田コース', area_id:'19', elevation_id:'4', climb_time_id:'5')
 Mountain.create(name:'大小山(だいしょうやま)',area_id:'9', elevation_id:'1', climb_time_id:'2')
+Mountain.create(name:'日光白根山(にっこうしらねさん)',area_id:'10', elevation_id:'3', climb_time_id:'3')
+Mountain.create(name:'高尾山(たかおさん)',area_id:'13', elevation_id:'1', climb_time_id:'2')
+Mountain.create(name:'筑波山(つくばさん)',area_id:'8', elevation_id:'1', climb_time_id:'3')
