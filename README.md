@@ -12,7 +12,8 @@
 * JavaScript
 * jQuery
 * Ruby
-* Ruby on Rails
+* Ruby on Rails 6.0.0
+* Bootstrap 4.5
 * Git/GitHub
 * VSCode
 * Draw.io
