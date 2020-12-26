@@ -4,6 +4,8 @@ ja:
       user:
        name: ユーザーネーム
        email: メールアドレス
+       password: パスワード
+       encrypted_password: パスワード
       tweet:
        title: タイトル
        introduction: 説明文
