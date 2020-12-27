@@ -1,6 +1,8 @@
 <h1>管理者新規投稿ページ</h1>
 
 <%= form_with model: @mountain, local:true do |f| %>
+  <%= render 'layouts/error_messages', model: f.object, class:"text-center" %>
+
   <%= f.label :image, "山の写真" %>
   <%= f.file_field :image %>
 
