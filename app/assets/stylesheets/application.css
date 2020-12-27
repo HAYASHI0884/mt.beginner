@@ -20,7 +20,7 @@
     height: 100vh;
     width: 100vw;
     min-height: 300px;
-    background-image: url('app/assets/images/home.jpg');
+    background-image: url('home.jpg');
     background-size: cover;
     z-index: 0;
  }
@@ -54,7 +54,7 @@
   height: 100vh;
   width: 100vw;
   min-height: 300px;
-  background-image: url('app/assets/images/rogin.jpg');
+  background-image: url('rogin.jpg');
   background-size: cover;
  }
 
@@ -97,7 +97,7 @@
   height: 100vh;
   width: 100%;
   min-height: 300px;
-  background-image: url('app/assets/images/top.jpg');
+  background-image: url('top.jpg');
   background-size: cover;
   z-index: 0;
  }
@@ -215,7 +215,7 @@ body.noscroll{
   height: 100vh;
   width: 100vw;
   min-height: 300px;
-  background-image: url('app/assets/images/mypage.jpg');
+  background-image: url('mypage.jpg');
   background-size: cover;
   z-index: 0;
 }
@@ -257,7 +257,7 @@ body.noscroll{
   height: 100vh;
   width: 100vw;
   min-height: 300px;
-  background-image: url('app/assets/images/search.jpg');
+  background-image: url('search.jpg');
   background-size: cover;
   z-index: 0;
 }
@@ -301,7 +301,7 @@ body.noscroll{
   height: 100vh;
   width: 100vw;
   min-height: 300px;
-  background-image: url('app/assets/images/tweet.jpg');
+  background-image: url('tweet.jpg');
   background-size: cover;
   z-index: 0;
 }
@@ -356,7 +356,7 @@ body.noscroll{
   height: 100vh;
   width: 100vw;
   min-height: 300px;
-  background-image: url('app/assets/images/chat.jpg');
+  background-image: url('chat.jpg');
   background-size: cover;
   z-index: 0;
 }
