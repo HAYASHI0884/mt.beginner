@@ -1,23 +1,23 @@
 <div class="mypage-image">
-<h1 class="roomname-bg text-shadow text-white"><%= @user.name %>さんのページ</h1>
+  <h1 class="roomname-bg text-shadow text-white"><%= @user.name %>さんのページ</h1>
 
-<div class="d-flex align-items-center justify-content-center flex-column">
-  <div class="m-4 image-shadow">
-    <% if @user.image.attached? %>
-      <%= image_tag @user.image.variant(combine_options:{gravity: :center, resize:"400x400^",crop:"400x400+0+0"}).processed %>
-    <% end %>
-  </div>
+  <div class="d-flex align-items-center justify-content-center flex-column">
+    <div class="m-4 image-shadow">
+      <% if @user.image.attached? %>
+        <%= image_tag @user.image.variant(combine_options:{gravity: :center, resize:"400x400^",crop:"400x400+0+0"}).processed %>
+      <% end %>
+    </div>
 
-  <h1 class="text-center text-white text-shadow mb-5"><%= @user.name %></h1>
+    <h1 class="text-center text-white text-shadow mb-5"><%= @user.name %></h1>
 
-  <div class="bg-white border border-dark prf-size box-shadow">
-    <%= @user.text %>
-  </div>
+    <div class="bg-white border border-dark prf-size box-shadow">
+      <%= @user.text %>
+    </div>
 
-  <div class="m-5">
-    <% if current_user.id == @user.id %>
-      <%= link_to "編集", edit_page_path(current_user.id), class:"btn btn-light rounded-pill px-3 box-shadow" %>
-    <% end %>
+    <div class="m-5">
+      <% if current_user.id == @user.id %>
+        <%= link_to "編集", edit_page_path(current_user.id), class:"btn btn-light rounded-pill px-3 box-shadow" %>
+      <% end %>
+    </div>
   </div>
 </div>
-

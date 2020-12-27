@@ -1,30 +1,30 @@
 <div class="tweet-image">
-<h1 class="text-white text-shadow sevenwords-bg">新規投稿ページ</h1>
+  <h1 class="text-white text-shadow sevenwords-bg">新規投稿ページ</h1>
 
-<div class="d-flex align-items-center justify-content-center flex-column  m-5">
-  <%= form_with model:@tweet, local:true, class:"d-flex align-items-center justify-content-center flex-column" do |f|%>
-    <%= render 'layouts/error_messages', model: f.object %>
+  <div class="d-flex align-items-center justify-content-center flex-column  m-5">
+    <%= form_with model:@tweet, local:true, class:"d-flex align-items-center justify-content-center flex-column" do |f|%>
+      <%= render 'layouts/error_messages', model: f.object %>
 
-    <div class="m-5 text-white text-shadow text-center">
-      <%= f.label :image, "投稿する写真", class:"h4" %><br />
-      <%= f.file_field :image, class:"text-shadow" %>
-    </div>
+      <div class="m-5 text-white text-shadow text-center">
+        <%= f.label :image, "投稿する写真", class:"h4" %><br />
+        <%= f.file_field :image, class:"text-shadow" %>
+      </div>
 
-    <div class="m-3 text-white text-shadow text-center">
-      <%= f.label :title, "タイトル(必須)", class:"h4" %><br />
-      <%= f.text_field :title, class:"box-shadow", size:"50" %>
-    </div>
+      <div class="m-3 text-white text-shadow text-center">
+        <%= f.label :title, "タイトル(必須)", class:"h4" %><br />
+        <%= f.text_field :title, class:"box-shadow", size:"50" %>
+      </div>
 
-    <div class="m-5 text-white text-shadow text-center">
-      <%= f.label :introduction, "説明文(必須)", class:"h4" %><br />
-      <%= f.text_area :introduction, size:"100x3", class:"box-shadow" %>
-    </div>
+      <div class="m-5 text-white text-shadow text-center">
+        <%= f.label :introduction, "説明文(必須)", class:"h4" %><br />
+        <%= f.text_area :introduction, size:"100x3", class:"box-shadow" %>
+      </div>
 
-    <div class="mb-3">
-      <%= f.submit "完了", class:"box-shadow px-3 py-1 mb-5" %>
-    </div>
-  <% end %>
+      <div class="mb-3">
+        <%= f.submit "完了", class:"box-shadow px-3 py-1 mb-5" %>
+      </div>
+    <% end %>
 
-  <%= link_to "戻る", pages_top_path, class:"box-shadow btn btn-light rounded-pill px-3 m-3" %>
+    <%= link_to "戻る", pages_top_path, class:"box-shadow btn btn-light rounded-pill px-3 m-3" %>
+  </div>
 </div>
-
