@@ -1,8 +1,8 @@
 # MT.BEGINNER
 ![トップページ](app/assets/images/README_image.png)
-![山検索ページ](app/assets/images/search_image1.png)
-![写真投稿ページ](app/assets/images/tweet_image1.png)
-![チャットルームページ](app/assets/images/chat_image3.png)
+![山検索ページ](app/assets/images/search-image1.png)
+![写真投稿ページ](app/assets/images/tweet-image1.png)
+![チャットルームページ](app/assets/images/chat-image3.png)
 
 ## アプリケーション概要
 もっと気軽に登山したい…という方に向けた複合サービスサイト。
