@@ -12,26 +12,30 @@
     <% if message.user == current_user %>
       <div class="mb-3 d-flex justify-content-end text-right">
         <div>
-          <div class="text-color">
+          <div class="text-color font-weight-bold">
             <%= message.user.name %>
             <%= message.created_at.strftime('%Y/%m/%d　%H:%M') %>
           </div>
-          <div class="text-white text-shadow flex-column h5">
+          <div class="h5 font-weight-bold">
             <%= message.text %>
           </div>
-          <%= image_tag message.image.variant(resize: '200x200') if message.image.attached? %>
+          <div class="image-shadow">
+            <%= image_tag message.image.variant(resize: '200x200') if message.image.attached? %>
+          </div>
         </div>
       </div>
     <% else %>
       <div class="mb-3">
-        <div class="text-color">
+        <div class="text-color font-weight-bold">
           <%= message.user.name %>
           <%= message.created_at.strftime('%Y/%m/%d　%H:%M') %>
         </div>
-        <div class="text-white text-shadow h5">
+        <div class="h5 font-weight-bold">
           <%= message.text %>
         </div>
-        <%= image_tag message.image.variant(resize: '200x200') if message.image.attached? %>
+        <div class="image-shadow">
+          <%= image_tag message.image.variant(resize: '200x200') if message.image.attached? %>
+        </div>
       </div>
     <% end %>
   <% end %>

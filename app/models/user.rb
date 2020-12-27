@@ -6,7 +6,8 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
-  validates :encrypted_password, presence:true, length: { minimum: 6 }
+  validates :encrypted_password, length: { minimum: 6 }
+
 
   has_one_attached :image, dependent: :destroy
   has_many :tweets, dependent: :destroy
