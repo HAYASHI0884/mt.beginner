@@ -42,7 +42,7 @@
 }
 
  .header-color {
-   background-color: #646464;
+   background-color: #181818;
  }
 
  .size {
@@ -388,11 +388,11 @@ body.noscroll{
 .roomname-bg {
   height: auto;
   display:inline-block;
-  background: rgba(55, 75, 54, 0.8);
+  background: rgb(55, 75, 54);
 }
 
 .message-bg {
-  background-color: rgba(102, 102, 102, 0.8);
+  background-color: rgba(190, 190, 190, 0.8);
 }
 
 .message-scroll {
@@ -419,5 +419,5 @@ body.noscroll{
 }
 
 .text-color {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgb(53, 26, 0);
 }
