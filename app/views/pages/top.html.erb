@@ -1,57 +1,57 @@
 <div class="top-image">
+  <div class="d-flex align-items-start justify-content-center flex-column h-100">
+    <div class="mb-5 d-flex align-items-center">
+      <h1 class="text-white text-shadow sixwords-bg">登山先の検索</h1>
+      <%= link_to "山の検索ページはこちら", mountains_path, class:"btn btn-light rounded-pill px-2 mx-4 box-shadow"%>
+    </div>
 
-  <div class="mb-5 d-flex align-items-center">
-    <h1 class="text-white text-shadow sixwords-bg">登山先の検索</h1>
-    <%= link_to "山の検索ページはこちら", mountains_path, class:"btn btn-light rounded-pill px-2 mx-4 box-shadow"%>
-  </div>
+    <div class="mb-3 d-flex align-items-center">
+      <h1 class="text-white text-shadow fivewords-bg">皆様の投稿</h1>
+      <%= link_to "新規投稿はこちら",new_tweet_path, class:"btn btn-light rounded-pill px-2 mx-4 box-shadow" %>
+    </div>
 
-  <div class="mb-3 d-flex align-items-center">
-    <h1 class="text-white text-shadow fivewords-bg">皆様の投稿</h1>
-    <%= link_to "新規投稿はこちら",new_tweet_path, class:"btn btn-light rounded-pill px-2 mx-4 box-shadow" %>
-  </div>
-
-  <div class="toppage-scroll d-flex justify-content-start align-items-center top-bar-bg">
-    <% if @tweets.length !=0 %>
-      <% @tweets.each do |tweet| %>
-        <div class="d-inline-block mx-3">
-          <div class="d-flex justify-content-center align-items-center flex-column image-shadow">
-            <% if tweet.image.attached? %>
-              <a href="/tweets/<%= tweet.id %>"><%= image_tag tweet.image.variant(combine_options:{gravity: :center, resize:"200x200^",crop:"200x200+0+0"}).processed %></a>
-            <% end %>
-            <div class="tweet-title-bg text-center text-white text-shadow mt-2 rounded-pill">
-              <div class="h4"><%= tweet.title %></div>
-              <div><%= link_to tweet.user.name, page_path(tweet.user.id), class:"text-white" %></div>
+    <div class="toppage-scroll d-flex justify-content-start align-items-center top-bar-bg mb-5">
+      <% if @tweets.length !=0 %>
+        <% @tweets.each do |tweet| %>
+          <div class="d-inline-block mx-3">
+            <div class="d-flex justify-content-center align-items-center flex-column image-shadow">
+              <% if tweet.image.attached? %>
+                <a href="/tweets/<%= tweet.id %>"><%= image_tag tweet.image.variant(combine_options:{gravity: :center, resize:"200x200^",crop:"200x200+0+0"}).processed %></a>
+              <% end %>
+              <div class="tweet-title-bg text-center text-white text-shadow mt-2 rounded-pill">
+                <div class="h4"><%= tweet.title %></div>
+                <div><%= link_to tweet.user.name, page_path(tweet.user.id), class:"text-white" %></div>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
+      <% else %>
+        <div class="h2 text-white text-shadow m-5">現在、投稿はありません</div>
       <% end %>
-    <% else %>
-      <div class="h2 text-white text-shadow m-5">現在、投稿はありません</div>
-    <% end %>
-  </div>
+    </div>
 
-  <div class="my-3 d-flex align-items-center">
-    <h1 class="text-white text-shadow ninewords-bg">チャットルーム一覧</h1>
-    <%= link_to "チャットルームの作成はこちら",new_room_path, class:"btn btn-light rounded-pill px-2 mx-4 box-shadow" %>
-  </div>
+    <div class="my-3 d-flex align-items-center">
+      <h1 class="text-white text-shadow ninewords-bg">チャットルーム一覧</h1>
+      <%= link_to "チャットルームの作成はこちら",new_room_path, class:"btn btn-light rounded-pill px-2 mx-4 box-shadow" %>
+    </div>
 
-  <div class="toppage-scroll d-flex justify-content-start align-items-center top-bar-bg">
-    <% if @rooms.length !=0 %>
-      <% @rooms.each do |room| %>
-        <div class="topchat-bg rounded d-flex justify-content-center align-items-center flex-column m-3 text-center text-white text-shadow">
-          <div class="m-3">
-            <div>Room name</div>
-            <%= link_to room.name, room_messages_path(room.id), class:"h3 text-white" %>
+    <div class="toppage-scroll d-flex justify-content-start align-items-center top-bar-bg">
+      <% if @rooms.length !=0 %>
+        <% @rooms.each do |room| %>
+          <div class="topchat-bg rounded d-flex justify-content-center align-items-center flex-column m-3 text-center text-white text-shadow">
+            <div class="m-3">
+              <div>Room name</div>
+              <%= link_to room.name, room_messages_path(room.id), class:"h3 text-white" %>
+            </div>
+            <div class="m-3">
+              <div>Host</div>
+              <%= link_to room.user.name, page_path(room.user.id), class:"text-white h3"%>
+            </div>
           </div>
-          <div class="m-3">
-            <div>Host</div>
-            <%= link_to room.user.name, page_path(room.user.id), class:"text-white h3"%>
-          </div>
-        </div>
+        <% end %>
+      <% else %>
+        <div class="h2 text-white text-shadow m-5">現在、チャットルームはありません</div>
       <% end %>
-    <% else %>
-      <div class="h2 text-white text-shadow m-5">現在、チャットルームはありません</div>
-    <% end %>
+    </div>
   </div>
-
 </div>
