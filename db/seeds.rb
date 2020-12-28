@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-user = User.new(name:"管理者", email: "admin@example.com", password:"11111111", password_confirmation: "11111111", text:"このアプリの管理者です。", admin: true)
+user = User.new(name:"管理者", email: "admin@mail.com", password:"11111111", password_confirmation: "11111111", text:"このアプリの管理者です。", admin: true)
 user.save
 
 Area.create(name:'北海道')
