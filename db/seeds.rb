@@ -78,7 +78,6 @@ Mountain.create(name:'大小山(だいしょうやま)',area_id:'9', elevation_i
 Mountain.create(name:'高尾山(たかおさん)',area_id:'13', elevation_id:'1', climb_time_id:'2')
 Mountain.create(name:'利尻山(りしりさん)',area_id:'1', elevation_id:'2', climb_time_id:'4')
 Mountain.create(name:'羅臼岳(らうすだけ)',area_id:'1', elevation_id:'2', climb_time_id:'5')
-Mountain.create(name:'利尻山(りしりさん)',area_id:'1', elevation_id:'2', climb_time_id:'4')
 Mountain.create(name:'那須岳(なすだけ)',area_id:'7', elevation_id:'2', climb_time_id:'4')
 Mountain.create(name:'燧ヶ岳(ひうちがたけ)',area_id:'7', elevation_id:'3', climb_time_id:'4')
 Mountain.create(name:'武尊山(ほたかやま)',area_id:'10', elevation_id:'3', climb_time_id:'4')
