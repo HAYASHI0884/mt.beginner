@@ -5,8 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-user = User.new(name:"管理者", email: "admin@mail.com", password:"11111111", password_confirmation: "11111111", text:"このアプリの管理者です。", admin: true)
+user = User.new(name:"管理者", email: "admin@mail.com", password:"11111111", password_confirmation: "11111111", text:"このアプリの管理者です。アプリについての感想・要望は私までご連絡ください。", admin: true)
 user.save
+User.cerate(name:"ハヤシ", email:"hayashi@mail.com", password:"111aaa", password_confirmation:"111aaa", text:"登山好きのプログラマー。")
+User.cerate(name:"Tomoya", email:"tomoya@mail.com", password:"111aaa", password_confirmation:"111aaa", text:"今年から登山を始めました！まだまだわからないことが多いので、色々教えていただけるとうれしいです！")
+User.cerate(name:"夏侯惇", email:"kakouton@mail.com", password:"111aaa", password_confirmation:"111aaa", text:"コロナのせいで最近外に出られていない。そろそろ長野への移住も考えようかな。")
+User.cerate(name:"たぴおか", email:"tapioka@mail.com", password:"111aaa", password_confirmation:"111aaa", text:"登山初心者です。。。")
+User.cerate(name:"momo", email:"momo@mail.com", password:"111aaa", password_confirmation:"111aaa", text:"登山歴3年。趣味は登山と写真とファッション。周りに山友が少ないので友だちになってください！")
 
 Area.create(name:'北海道')
 Area.create(name:'青森県')
