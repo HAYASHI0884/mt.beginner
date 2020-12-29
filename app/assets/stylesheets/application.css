@@ -297,6 +297,10 @@ body.noscroll{
   background: #0e4e1e;
 }
 
+.mountain-result-width{
+  width: 90%;
+}
+
 /* 写真投稿機能 */
 .tweet-image {
   position: relative;
