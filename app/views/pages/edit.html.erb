@@ -1,7 +1,7 @@
 <div class="mypage-image">
   <h1 class="text-white text-shadow fivewords-bg">編集ページ</h1>
 
-  <div class="d-flex align-items-center justify-content-center flex-column m-5">
+  <div class="d-flex align-items-center justify-content-center flex-column m-5 h-75">
     <%= form_with model:@user, url:page_path, local:true, class:"d-flex align-items-center justify-content-center flex-column" do |f|%>
       <div class="m-5 text-white text-shadow text-center">
         <%= f.label :image, "プロフィール写真", class:"h4" %><br />
