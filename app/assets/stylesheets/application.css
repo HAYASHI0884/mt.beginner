@@ -41,8 +41,10 @@
   z-index: -1;
 }
 
- .header-color {
+ .header {
    background-color: #3d3d3d;
+   height: 10vh;
+   max-height: 150px;
  }
 
  .size {
