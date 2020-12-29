@@ -62,3 +62,4 @@ gem 'rails-i18n'
 gem 'mini_magick', '~> 4.8'
 gem 'pry-rails'
 gem 'ransack'
+gem "aws-sdk-s3", require: false
