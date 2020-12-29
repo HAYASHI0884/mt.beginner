@@ -375,8 +375,8 @@ body.noscroll{
 
 .newchat-bg {
   background: rgba(55, 75, 54, 0.8);
-  height: auto;
-  width: 500px;
+  height: 450px;
+  width: 800px;
 }
 
 .ninewords-bg {
