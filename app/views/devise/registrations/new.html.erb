@@ -1,7 +1,7 @@
 <div class="rogin-image text-white d-flex flex-column align-items-center justify-content-center">
 
   <div class="bg-signin">
-  <p class="h1 font-weight-bold m-3 px-3 text-shadow text-center">SIGN UP</p>
+  <p class="h1 font-weight-bold m-4 px-3 text-shadow text-center">SIGN UP</p>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
     <div class="text-center text-shadow">
@@ -9,22 +9,22 @@
     </div>
 
     <div class="m-4 text-shadow">
-      <div class="field d-flex justify-content-between">
+      <div class="field d-flex justify-content-between my-3">
         <%= f.label :ユーザーネーム %>
         <%= f.text_field :name %>
       </div>
 
-      <div class="field d-flex justify-content-between">
+      <div class="field d-flex justify-content-between mb-3">
         <%= f.label :メールアドレス %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
       </div>
 
-      <div class="field d-flex justify-content-between">
+      <div class="field d-flex justify-content-between mb-3">
         <%= f.label :"パスワード（6文字以上）" %>
         <%= f.password_field :password, autocomplete: "new-password" %>
       </div>
 
-      <div class="field d-flex justify-content-between">
+      <div class="field d-flex justify-content-between mb-3">
         <%= f.label :パスワード（確認用） %>
         <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
       </div>

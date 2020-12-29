@@ -53,14 +53,14 @@
  }
 
  .bg-rogin {
-   height: 32%;
-   width: 30%;
+   height: 350px;
+   width: 700px;
    background: rgba(55, 75, 54, 0.8);
  }
 
  .bg-signin {
-  height: 52%;
-  width: 40%;
+  height: 600px;
+  width: 700px;
   background: rgba(55, 75, 54, 0.8);
  }
 
