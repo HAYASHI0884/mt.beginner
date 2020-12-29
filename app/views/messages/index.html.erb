@@ -7,33 +7,33 @@
     <% end %>
   </div>
 
-  <div class="message-bg message-scroll">
+  <div class="message-bg message-scroll mt-3">
     <% @messages.each do |message| %>
       <% if message.user == current_user %>
-        <div class="mb-3 d-flex justify-content-end text-right">
+        <div class="mb-4 d-flex justify-content-end text-right">
           <div>
-            <div class="text-color font-weight-bold">
+            <div class="text-color font-weight-bold mr-3">
               <%= message.user.name %>
               <%= message.created_at.strftime('%Y/%m/%d　%H:%M') %>
             </div>
-            <div class="h5 font-weight-bold">
+            <div class="h5 font-weight-bold mr-3">
               <%= message.text %>
             </div>
-            <div class="image-shadow">
+            <div class="image-shadow mr-3">
               <%= image_tag message.image.variant(resize: '200x200') if message.image.attached? %>
             </div>
           </div>
         </div>
       <% else %>
-        <div class="mb-3">
-          <div class="text-color font-weight-bold">
+        <div class="mb-4">
+          <div class="text-color font-weight-bold ml-3">
             <%= message.user.name %>
             <%= message.created_at.strftime('%Y/%m/%d　%H:%M') %>
           </div>
-          <div class="h5 font-weight-bold">
+          <div class="h5 font-weight-bold ml-3">
             <%= message.text %>
           </div>
-          <div class="image-shadow">
+          <div class="image-shadow ml-3">
             <%= image_tag message.image.variant(resize: '200x200') if message.image.attached? %>
           </div>
         </div>
@@ -44,7 +44,7 @@
 
   <%= form_with model: [@room, @message], local: true, class:"message-field" do |f| %>
     <%= f.text_field :text, placeholder: ' 文字の入力', size:'100' %>
-    <label class="form-image p-2 m-3 rounded box-shadow">
+    <label class="form-image px-2 py-1 m-3 rounded box-shadow">
       <div class="text-white">画像</div>
       <%= f.file_field :image, class:"d-none" %>
     </label>
