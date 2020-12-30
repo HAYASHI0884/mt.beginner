@@ -29,6 +29,8 @@ https://mt-beginner.herokuapp.com/
 * RSpec
 * RuboCop
 * Heroku
+* MySQL
+* AWS(S3)
 
 ## 実装機能一覧
 * 山の検索機能
