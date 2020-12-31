@@ -1,6 +1,6 @@
 <div class="top-image">
   <div class="d-flex align-items-start justify-content-center flex-column h-100">
-    <div class="mb-5 d-flex align-items-center">
+    <div class="mb-3 d-flex align-items-center">
       <h1 class="text-white text-shadow sixwords-bg">登山先の検索</h1>
       <%= link_to "山の検索ページはこちら", mountains_path, class:"btn btn-light rounded-pill px-2 mx-4 box-shadow"%>
     </div>
@@ -10,7 +10,7 @@
       <%= link_to "新規投稿はこちら",new_tweet_path, class:"btn btn-light rounded-pill px-2 mx-4 box-shadow" %>
     </div>
 
-    <div class="toppage-scroll d-flex justify-content-start align-items-center mb-5">
+    <div class="toppage-scroll d-flex justify-content-start align-items-center mb-3">
       <% if @tweets.length !=0 %>
         <% @tweets.each do |tweet| %>
           <div class="d-inline-block mx-3">
@@ -30,7 +30,7 @@
       <% end %>
     </div>
 
-    <div class="my-3 d-flex align-items-center">
+    <div class="mb-3 d-flex align-items-center">
       <h1 class="text-white text-shadow ninewords-bg">チャットルーム一覧</h1>
       <%= link_to "チャットルームの作成はこちら",new_room_path, class:"btn btn-light rounded-pill px-2 mx-4 box-shadow" %>
     </div>
