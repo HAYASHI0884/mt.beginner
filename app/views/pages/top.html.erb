@@ -10,7 +10,7 @@
       <%= link_to "新規投稿はこちら",new_tweet_path, class:"btn btn-light rounded-pill px-2 mx-4 box-shadow" %>
     </div>
 
-    <div class="toppage-scroll d-flex justify-content-start align-items-center top-bar-bg mb-5">
+    <div class="toppage-scroll d-flex justify-content-start align-items-center mb-5">
       <% if @tweets.length !=0 %>
         <% @tweets.each do |tweet| %>
           <div class="d-inline-block mx-3">
@@ -35,7 +35,7 @@
       <%= link_to "チャットルームの作成はこちら",new_room_path, class:"btn btn-light rounded-pill px-2 mx-4 box-shadow" %>
     </div>
 
-    <div class="toppage-scroll d-flex justify-content-start align-items-center top-bar-bg">
+    <div class="toppage-scroll d-flex justify-content-start align-items-center">
       <% if @rooms.length !=0 %>
         <% @rooms.each do |room| %>
           <div class="topchat-bg rounded d-flex justify-content-center align-items-center flex-column m-3 text-center text-white text-shadow">

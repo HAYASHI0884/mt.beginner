@@ -311,9 +311,6 @@ body.noscroll{
   height: 285px;
   width: 99vw;
   overflow-x: scroll;
-}
-
-.top-bar-bg {
   background-color: rgba(255, 255, 255, 0.6);
 }
 
