@@ -24,6 +24,10 @@ class RoomsController < ApplicationController
     end
   end
 
+  def show
+    @room = Room.includes(:user, :users, :messages, :entries)
+  end
+
   private
 
   def room_params
