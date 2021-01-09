@@ -25,7 +25,9 @@ class RoomsController < ApplicationController
   end
 
   def show
-    @room = Room.includes(:user, :users, :messages, :entries)
+    user = User.find(params[:id])
+    @rooms = Room.includes(:user, :users, :messages, :entries)
+    redirect_to pages_top_path unless current_user.id == user.id
   end
 
   private
