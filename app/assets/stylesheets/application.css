@@ -320,12 +320,9 @@ body.noscroll{
 }
 
 .toppage-scroll {
-  height: 285px;
+  min-height: 277px;
   width: 99vw;
   overflow-x: scroll;
-}
-
-.top-bar-bg {
   background-color: rgba(255, 255, 255, 0.6);
 }
 
@@ -407,7 +404,7 @@ body.noscroll{
   position: fixed;
   bottom: 0;
   background-color: rgb(243, 243, 243);
-  height: calc(100vh/20);
+  height: calc(100vh/15);
   width: 100%;
   display: flex;
   align-items: center;

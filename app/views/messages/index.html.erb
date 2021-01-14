@@ -43,7 +43,7 @@
 
 
   <%= form_with model: [@room, @message], local: true, class:"message-field" do |f| %>
-    <%= f.text_field :text, placeholder: ' 文字の入力', size:'100' %>
+    <%= f.text_field :text, placeholder: ' 文字の入力', size:'95' %>
     <label class="form-image px-2 py-1 m-3 rounded box-shadow">
       <div class="text-white">画像</div>
       <%= f.file_field :image, class:"d-none" %>
