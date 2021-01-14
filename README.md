@@ -36,6 +36,7 @@ https://mt-beginner.herokuapp.com/
 * 山の検索機能
 * 写真共有機能
 * チャットルーム作成機能
+* 参加ルーム一覧表示機能
 
 ## 利用方法
 * トップページでヘッダーからログイン・新規登録。
@@ -61,7 +62,6 @@ https://mt-beginner.herokuapp.com/
 * 登山カウンター機能
 * SNS認証機能
 * 山の難易度表示機能
-* 投稿一覧機能
 
 ## データベース設計
 ![ER図](app/assets/images/MT.BEGINNER.ER.png)
