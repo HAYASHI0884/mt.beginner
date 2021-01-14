@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     end
   end
   resources :tweets, only:[:show, :edit, :new, :create, :update, :destroy]
-  resources :rooms, only:[:new, :create, :destroy] do
+  resources :rooms, only:[:new, :create, :destroy, :show] do
     resources :messages, only:[:index, :create]
   end
 

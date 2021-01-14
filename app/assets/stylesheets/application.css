@@ -237,6 +237,18 @@ body.noscroll{
   background: rgba(55, 75, 54, 0.8);
 }
 
+.mypage-scroll {
+  height: 90%;
+  overflow-x: scroll;
+}
+
+.mypage-tweet-scroll{
+  height: 200px;
+  width: 100vw;
+  overflow-x: scroll;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
 /* 山検索機能 */
 .search-image {
   position: relative;
