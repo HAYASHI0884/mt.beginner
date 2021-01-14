@@ -26,7 +26,7 @@ class RoomsController < ApplicationController
 
   def show
     user = User.find(params[:id])
-    @rooms = Room.includes(:user, :users, :messages, :entries)
+    @rooms = Room.includes(:user, :users, :messages, :entries).order(id: 'DESC')
     redirect_to pages_top_path unless current_user.id == user.id
   end
 
