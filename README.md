@@ -56,12 +56,12 @@ https://mt-beginner.herokuapp.com/
 * 天気予報API
 * コメント機能
 * いいね機能
-* 簡単ログイン機能
 * 忘れ物チェック機能
 * 複数枚写真投稿機能
 * 登山カウンター機能
 * SNS認証機能
 * 山の難易度表示機能
+* グループチャット機能
 
 ## データベース設計
 ![ER図](app/assets/images/MT.BEGINNER.ER.png)
