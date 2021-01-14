@@ -22,13 +22,15 @@
 
     <div class="mypage-tweet-scroll d-flex justify-content-start align-items-center">
       <% @tweets.each do |tweet| %>
-        <div class="d-inline-block mx-3">
-          <div class="d-flex justify-content-center align-items-center flex-column image-shadow">
-            <% if tweet.image.attached? %>
-              <a href="/tweets/<%= tweet.id %>"><%= image_tag tweet.image.variant(combine_options:{gravity: :center, resize:"150x150^",crop:"150x150+0+0"}).processed %></a>
-            <% end %>
+        <% if tweet.user == current_user%>
+          <div class="d-inline-block mx-3">
+            <div class="d-flex justify-content-center align-items-center flex-column image-shadow">
+              <% if tweet.image.attached? %>
+                <a href="/tweets/<%= tweet.id %>"><%= image_tag tweet.image.variant(combine_options:{gravity: :center, resize:"150x150^",crop:"150x150+0+0"}).processed %></a>
+              <% end %>
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
     </div>
   </div>
