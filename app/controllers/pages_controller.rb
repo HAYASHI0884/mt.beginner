@@ -1,12 +1,12 @@
 class PagesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :explain]
   before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_tweets, only: [:top, :show]
 
   def index
   end
 
   def top
-    @tweets = Tweet.includes(:user).order(id: 'DESC')
     @rooms = Room.includes(:messages, :entries, :users, :user).order(id: 'DESC')
   end
 
@@ -14,7 +14,6 @@ class PagesController < ApplicationController
   end
 
   def show
-    @tweets = Tweet.includes(:user).order(id: 'DESC')
   end
 
   def edit
@@ -37,5 +36,9 @@ class PagesController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def set_tweets
+    @tweets = Tweet.includes(:user).order(id: 'DESC')
   end
 end
