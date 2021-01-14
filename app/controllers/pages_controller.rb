@@ -14,6 +14,7 @@ class PagesController < ApplicationController
   end
 
   def show
+    @tweets = Tweet.includes(:user).order(id: 'DESC')
   end
 
   def edit

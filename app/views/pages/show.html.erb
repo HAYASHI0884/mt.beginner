@@ -1,10 +1,10 @@
 <div class="mypage-image">
-  <h1 class="roomname-bg text-shadow text-white"><%= @user.name %>さんのページ</h1>
+  <h1 class="roomname-bg text-shadow text-white"><%= @user.name %>さんのプロフィール＆投稿</h1>
 
-  <div class="d-flex align-items-center justify-content-center flex-column h-75">
+  <div class="d-flex align-items-center justify-content-center flex-column mypage-scroll">
     <div class="m-4 image-shadow">
       <% if @user.image.attached? %>
-        <%= image_tag @user.image.variant(combine_options:{gravity: :center, resize:"400x400^",crop:"400x400+0+0"}).processed %>
+        <%= image_tag @user.image.variant(combine_options:{gravity: :center, resize:"250x250^",crop:"250x250+0+0"}).processed %>
       <% end %>
     </div>
 
@@ -14,9 +14,21 @@
       <%= @user.text %>
     </div>
 
-    <div class="m-5">
+    <div class="m-3">
       <% if current_user.id == @user.id %>
         <%= link_to "編集", edit_page_path(current_user.id), class:"btn btn-light rounded-pill px-3 box-shadow" %>
+      <% end %>
+    </div>
+
+    <div class="mypage-tweet-scroll d-flex justify-content-start align-items-center">
+      <% @tweets.each do |tweet| %>
+        <div class="d-inline-block mx-3">
+          <div class="d-flex justify-content-center align-items-center flex-column image-shadow">
+            <% if tweet.image.attached? %>
+              <a href="/tweets/<%= tweet.id %>"><%= image_tag tweet.image.variant(combine_options:{gravity: :center, resize:"150x150^",crop:"150x150+0+0"}).processed %></a>
+            <% end %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
