@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
     if @room.present?
       @messages = @room.messages.includes(:user, :room).order(id: 'DESC')
       @user = @room.users
-      redirect_to pages_top_path unless @user.include?(current_user)
+      redirect_to pages_top_path unless @user.include?(current_user) || current_user.admin == true
     end
   end
 
