@@ -4,6 +4,7 @@ class TweetsController < ApplicationController
   before_action :if_not_admin, only:[:index]
 
   def index
+    @tweets = Tweet.includes(:user).order(id: 'DESC')
   end
 
   def show

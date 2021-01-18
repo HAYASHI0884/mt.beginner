@@ -1,0 +1,6 @@
+<h1>管理者投稿管理トップページ</h1>
+<% @tweets.each do |tweet| %>
+  <%= link_to tweet.title, tweet_path(tweet.id) %>
+  <%= tweet.user.name %>
+  <%= link_to "削除", tweet_path(tweet.id), method: :delete, data: { confirm: "本当に削除しますか?" }, class:"ml-3 text-danger font-weight-bold" %>
+<% end %>
