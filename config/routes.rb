@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       resources :mountains, only:[:index]
     end
   end
-  resources :tweets, only:[:show, :edit, :new, :create, :update, :destroy]
+  resources :tweets
   resources :rooms, only:[:new, :create, :destroy, :show] do
     resources :messages, only:[:index, :create]
   end
