@@ -1,6 +1,7 @@
 class TweetsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_tweet, only: [:show, :edit, :update, :destroy]
+  before_action :if_not_admin, only:[:index]
 
   def index
   end
@@ -45,6 +46,10 @@ class TweetsController < ApplicationController
   end
 
   private
+
+  def if_not_admin
+    redirect_to pages_top_path unless current_user.admin?
+  end
 
   def set_tweet
     @tweet = Tweet.find(params[:id])
