@@ -16,7 +16,7 @@
           <div class="d-inline-block mx-3">
             <div class="d-flex justify-content-center align-items-center flex-column image-shadow">
               <% if tweet.image.attached? %>
-                <a href="/tweets/<%= tweet.id %>"><%= image_tag tweet.image.variant(combine_options:{gravity: :center, resize:"200x200^",crop:"200x200+0+0"}).processed %></a>
+                <a href="/tweets/<%= tweet.id %>"><%= image_tag tweet.image.variant(combine_options:{gravity: :center, resize:"180x180^",crop:"180x180+0+0"}).processed %></a>
               <% end %>
               <div class="tweet-title-bg text-center text-white text-shadow mt-2 rounded-pill">
                 <div class="h4"><%= tweet.title %></div>
