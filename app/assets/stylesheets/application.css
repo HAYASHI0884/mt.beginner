@@ -77,6 +77,9 @@
   background: rgba(55, 75, 54, 0.8);
 }
 
+.home-font {
+  font-family: 'Sacramento', cursive;
+}
 /* トップページ・ハンバーガーメニュー */
  .top-image {
   position: relative;
