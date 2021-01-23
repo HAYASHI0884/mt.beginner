@@ -13,19 +13,25 @@ RSpec.describe Tweet, type: :model do
     end
 
     context '写真が投稿できない場合' do
-      it 'titleが空だと出品できない' do
+      it 'titleが空だと投稿できない' do
         @tweet.title = ''
         @tweet.valid?
         expect(@tweet.errors.full_messages).to include("タイトルを入力してください")
       end
 
-      it 'introductionが空だと出品できない' do
+      it 'introductionが空だと投稿できない' do
         @tweet.introduction = ''
         @tweet.valid?
         expect(@tweet.errors.full_messages).to include("説明文を入力してください")
       end
 
-      it 'imageが空だと出品できない' do
+      it 'introductionが141字以上だと投稿できない' do
+        @tweet.introduction = '123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901'
+        @tweet.valid?
+        expect(@tweet.errors.full_messages).to include("説明文は140文字以内で入力してください")
+      end
+
+      it 'imageが空だと投稿できない' do
         @tweet.image = nil
         @tweet.valid?
         expect(@tweet.errors.full_messages).to include("画像ファイルを添付してください")
