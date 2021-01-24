@@ -120,3 +120,65 @@ RSpec.describe 'ゲストユーザーログイン', type: :system do
     end
   end
 end
+
+RSpec.describe 'ユーザー情報編集', type: :system do
+  before do
+    @user1 = FactoryBot.create(:user)
+    @user2 = FactoryBot.create(:user)
+  end
+  context 'ユーザー情報を変更できるとき' do
+    it 'ログインしたユーザーは自分の情報を変更できる' do
+      # @user1でログインする
+      visit new_user_session_path
+      fill_in 'メールアドレス', with: @user1.email
+      fill_in 'パスワード', with: @user1.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq pages_top_path
+      # ヘッダーに「こんにちは、'@user1の名前'さん」が表示されていることを確認する
+      expect(page).to have_content("こんにちは、#{@user1.name}さん")
+      # @user1のマイページに遷移する
+      visit page_path(@user1)
+      # 編集ボタンが表示されていることを確認する
+      expect(page).to have_content('編集')
+      # 編集画面に遷移する
+      visit edit_page_path(@user1)
+      # ユーザー情報を編集する
+      attach_file "user[image]", 'app/assets/images/test_image.png'
+      fill_in 'プロフィール', with: "text"
+      # 編集してもUserモデルのカウントは変わらないことを確認する
+      expect{
+        find('input[name="commit"]').click
+      }.to change { User.count }.by(0)
+      # マイページに遷移したことを確認する
+      expect(current_path).to eq page_path(@user1)
+      # マイページには変更した内容の情報がある事を確認する(画像)
+      expect(page).to have_selector("img[src$='test_image.png']")
+      # マイページには変更した内容の情報がある事を確認する(プロフィール文)
+      expect(page).to have_content("text")
+    end
+  end
+  context 'ユーザー情報を変更できないとき' do
+    it 'ログインしたユーザーは自分以外の編集画面に遷移できない' do
+      # @user2でログインする
+      visit new_user_session_path
+      fill_in 'メールアドレス', with: @user2.email
+      fill_in 'パスワード', with: @user2.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq pages_top_path
+      # ヘッダーに「こんにちは、'@user2の名前'さん」が表示されていることを確認する
+      expect(page).to have_content("こんにちは、#{@user2.name}さん")
+      # @user1のマイページに遷移する
+      visit page_path(@user1)
+      # 編集ボタンが表示されていないことを確認する
+      expect(page).to have_no_content('編集')
+    end
+    it 'ログインしていないとユーザー情報の編集画面には遷移できない' do
+      # indexページに移動する
+      visit root_path
+      # @user1の編集画面に遷移しようとする
+      visit page_path(@user1)
+      # ログイン画面に遷移した事を確認する
+      expect(current_path).to eq new_user_session_path
+    end
+  end
+end
