@@ -82,6 +82,7 @@ RSpec.describe 'ログイン', type: :system do
   end
   context 'ログインができないとき' do
     it '保存されているユーザーの情報と合致しないとログインができない' do
+      # indexページに移動する
       visit root_path
       # トップページにログインページへ遷移するボタンがあることを確認する
       expect(page).to have_content('ログイン')
@@ -94,6 +95,28 @@ RSpec.describe 'ログイン', type: :system do
       find('input[name="commit"]').click
       # ログインページへ戻されることを確認する
       expect(current_path).to eq new_user_session_path
+    end
+  end
+end
+
+RSpec.describe 'ゲストユーザーログイン', type: :system do
+  context 'ログインができるとき' do
+    it 'ゲストログインボタンを押すとゲストログインする' do
+      #indexページに移動する
+      visit root_path
+      #indexページにゲストログインできるボタンがあることを確認する
+      expect(page).to have_content('ゲストログイン（閲覧用）')
+      # ゲストログイン（閲覧用）ボタンを押すとユーザーモデルのカウントが1上がることを確認する
+      expect{
+        find('a[rel="nofollow"]').click
+      }.to change { User.count }.by(1)
+      # topページへ遷移することを確認する
+      expect(current_path).to eq pages_top_path
+      # ヘッダーにログアウトボタンが表示されることを確認する
+      expect(page).to have_content('ログアウト')
+      # サインアップページへ遷移するボタンやログインページへ遷移するボタンが表示されていないことを確認する
+      expect(page).to have_no_content('新規登録')
+      expect(page).to have_no_content('ログイン')
     end
   end
 end
