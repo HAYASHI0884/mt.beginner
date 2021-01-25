@@ -4,13 +4,13 @@
   <div class="d-flex align-items-center justify-content-center flex-column m-5 h-75">
     <div class="m-4">
       <% if @tweet.image.attached? %>
-        <%= image_tag @tweet.image.variant(combine_options:{gravity: :center, resize:"400x400^",crop:"400x400+0+0"}).processed %>
+        <%= image_tag @tweet.image.variant(combine_options:{gravity: :center, resize:"400x400^",crop:"400x400+0+0"}).processed, name:"tweet_image" %>
       <% end %>
     </div>
 
     <h1 class="text-center text-white text-shadow mb-5"><%= @tweet.title %></h1>
 
-    <div class="bg-white border border-dark prf-size box-shadow">
+    <div class="bg-white border border-dark prf-size box-shadow" name="tweet_introduction">
       <%= @tweet.introduction %>
     </div>
 
