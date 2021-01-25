@@ -15,7 +15,7 @@
     </div>
 
     <div class="m-5">
-      <% if current_user.id == @tweet.user_id %>
+      <% if current_user.id == @tweet.user_id || current_user.admin == true %>
         <%= link_to "編集", edit_tweet_path(@tweet.id), class:"btn btn-light rounded-pill px-3 box-shadow" %>
       <% end %>
     </div>
