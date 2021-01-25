@@ -5,4 +5,10 @@ FactoryBot.define do
     password              {"000000"}
     password_confirmation {password}
   end
+  factory :admin do
+    name                  {"admin"}
+    email                 {admin@mail.com}
+    password              {"11111111"}
+    password_confirmation {password}
+  end
 end
