@@ -7,7 +7,7 @@ RSpec.describe "ユーザー新規登録", type: :system do
 
   context 'ユーザー新規登録ができるとき' do
     it '正しい情報を入力すればユーザー新規登録ができてトップページに移動する' do
-      # indexページに移動する
+      # indexページに遷移する
       visit root_path
       # ヘッダーに新規登録ページへ遷移するボタンがあることを確認する
       expect(page).to have_content('新規登録')
@@ -33,7 +33,7 @@ RSpec.describe "ユーザー新規登録", type: :system do
   end
   context 'ユーザー新規登録ができないとき' do
     it '誤った情報ではユーザー新規登録ができずに新規登録ページへ戻ってくる' do
-      # indexページに移動する
+      # indexページに遷移する
       visit root_path
       # indexページに新規登録ページへ遷移するボタンがあることを確認する
       expect(page).to have_content('新規登録')
@@ -60,7 +60,7 @@ RSpec.describe 'ログイン', type: :system do
   end
   context 'ログインができるとき' do
     it '保存されているユーザーの情報と合致すればログインができる' do
-      # indexページに移動する
+      # indexページに遷移する
       visit root_path
       # indexページにログインページへ遷移するボタンがあることを確認する
       expect(page).to have_content('ログイン')
@@ -82,7 +82,7 @@ RSpec.describe 'ログイン', type: :system do
   end
   context 'ログインができないとき' do
     it '保存されているユーザーの情報と合致しないとログインができない' do
-      # indexページに移動する
+      # indexページに遷移する
       visit root_path
       # トップページにログインページへ遷移するボタンがあることを確認する
       expect(page).to have_content('ログイン')
@@ -102,7 +102,7 @@ end
 RSpec.describe 'ゲストユーザーログイン', type: :system do
   context 'ログインができるとき' do
     it 'ゲストログインボタンを押すとゲストログインする' do
-      #indexページに移動する
+      #indexページに遷移する
       visit root_path
       #indexページにゲストログインできるボタンがあることを確認する
       expect(page).to have_content('ゲストログイン（閲覧用）')
@@ -173,7 +173,7 @@ RSpec.describe 'ユーザー情報編集', type: :system do
       expect(page).to have_no_content('編集')
     end
     it 'ログインしていないとユーザー情報の編集画面には遷移できない' do
-      # indexページに移動する
+      # indexページに遷移する
       visit root_path
       # @user1の編集画面に遷移しようとする
       visit page_path(@user1)
