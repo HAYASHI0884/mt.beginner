@@ -158,7 +158,7 @@ RSpec.describe 'ユーザー情報編集', type: :system do
     end
   end
   context 'ユーザー情報を変更できないとき' do
-    it 'ログインしたユーザーは自分以外の編集画面に遷移できない' do
+    it 'ログインしたユーザーは自分以外の詳細画面では編集ボタンが表示されない' do
       # @user2でログインする
       visit new_user_session_path
       fill_in 'メールアドレス', with: @user2.email
@@ -172,11 +172,25 @@ RSpec.describe 'ユーザー情報編集', type: :system do
       # 編集ボタンが表示されていないことを確認する
       expect(page).to have_no_content('編集')
     end
+    it 'ログインしたユーザーは自分以外の編集画面に遷移できない' do
+      # @user2でログインする
+      visit new_user_session_path
+      fill_in 'メールアドレス', with: @user2.email
+      fill_in 'パスワード', with: @user2.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq pages_top_path
+      # ヘッダーに「こんにちは、'@user2の名前'さん」が表示されていることを確認する
+      expect(page).to have_content("こんにちは、#{@user2.name}さん")
+      # @user1の編集画面に遷移しようとする
+      visit edit_page_path(@user1)
+      # topページへ遷移することを確認する
+      expect(current_path).to eq pages_top_path
+    end
     it 'ログインしていないとユーザー情報の編集画面には遷移できない' do
       # indexページに遷移する
       visit root_path
       # @user1の編集画面に遷移しようとする
-      visit page_path(@user1)
+      visit edit_page_path(@user1)
       # ログイン画面に遷移した事を確認する
       expect(current_path).to eq new_user_session_path
     end
