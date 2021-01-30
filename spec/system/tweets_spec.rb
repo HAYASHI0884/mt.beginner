@@ -46,3 +46,80 @@ RSpec.describe "写真投稿", type: :system do
     end
   end
 end
+
+RSpec.describe '投稿編集', type: :system do
+  before do
+    @admin = FactoryBot.create(:admin)
+    @tweet1 = FactoryBot.create(:tweet)
+    @tweet2 = FactoryBot.create(:tweet)
+  end
+  context '投稿編集ができるとき' do
+    it 'ログインしたユーザーは自分が投稿した写真の編集ができる' do
+      # 投稿1を投稿したユーザーでログインする
+      visit new_user_session_path
+      fill_in 'メールアドレス', with: @tweet1.user.email
+      fill_in 'パスワード', with: @tweet1.user.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq pages_top_path
+      # 投稿1の詳細ページへ遷移する
+      visit tweet_path(@tweet1)
+      # 投稿1の詳細ページに「編集」ボタンがあることを確認する
+      expect(page).to have_content('編集')
+      # 編集ページへ遷移する
+      visit edit_tweet_path(@tweet1)
+      # すでに投稿済みの内容がフォームに入っていることを確認する
+      expect(
+        find('tweet_title').value
+      ).to eq @tweet1.title
+      expect(
+        find('tweet_introduction').value
+      ).to eq @tweet1.introduction
+      # 投稿内容を編集する
+      attach_file "tweet[image]", with: "#{@tweet1.image}+編集した画像URL"
+      fill_in "tweet[title]", with: "#{@tweet1.title}+編集したテキスト"
+      fill_in "tweet[introduction]", with: "#{@tweet1.introduction}+編集したテキスト"
+      # 編集してもTweetモデルのカウントは変わらないことを確認する
+      expect{
+        find('input[name="commit"]').click
+      }.to change { Tweet.count }.by(0)
+      # 投稿1の詳細ページに遷移した事を確認する
+      expect(current_path).to eq tweet_path(@tweet1)
+      # 投稿1の詳細ページには先ほど変更した内容のツイートが存在することを確認する（画像）
+      expect(page).to eq have_selector("#{@tweet1.image}+編集した画像URL")
+      # 投稿1の詳細ページには先ほど変更した内容のツイートが存在することを確認する（タイトル）
+      expect(page).to eq have_content("#{@tweet1.title}+編集したテキスト")
+      # 投稿1の詳細ページには先ほど変更した内容のツイートが存在することを確認する（説明文）
+      expect(page).to eq have_content("#{@tweet1.introduction}+編集したテキスト")
+    end
+    it '管理者であれば他者の投稿の編集を行う事ができる' do
+      # 管理者でログインする
+      # 投稿1の詳細ページへ遷移する
+      # 投稿1の詳細ページに「編集」ボタンがあることを確認する
+      # 編集ページへ遷移する
+      # すでに投稿済みの内容がフォームに入っていることを確認する
+      # 投稿内容を編集する
+      # 編集してもTweetモデルのカウントは変わらないことを確認する
+      # 投稿1の詳細ページに遷移した事を確認する
+      # 投稿1の詳細ページには先ほど変更した内容のツイートが存在することを確認する（画像）
+      # 投稿1の詳細ページには先ほど変更した内容のツイートが存在することを確認する（テキスト）
+    end
+  end
+
+  context '投稿編集ができないとき' do
+    it 'ログインしたユーザーは自分以外が投稿した写真の詳細画面では編集ボタンが表示されない' do
+      # 投稿1を投稿したユーザーでログインする
+      # 投稿2の詳細ページへ遷移する
+      # 投稿2に「編集」ボタンがないことを確認する
+    end
+    it 'ログインしたユーザーは自分以外が投稿した写真の編集画面には遷移できない' do
+      # 投稿1を投稿したユーザーでログインする
+      # 投稿2の編集ページに遷移しようとする
+      # topページへ遷移することを確認する
+    end
+    it 'ログインしていないと写真の編集画面には遷移できない' do
+      # indexページに遷移する
+      # 投稿1の編集画面に遷移しようとする
+      # ログイン画面に遷移した事を確認する
+    end
+  end
+end
