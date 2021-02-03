@@ -67,17 +67,10 @@ RSpec.describe '投稿編集', type: :system do
       expect(page).to have_content('編集')
       # 編集ページへ遷移する
       visit edit_tweet_path(@tweet1)
-      # すでに投稿済みの内容がフォームに入っていることを確認する
-      expect(
-        find('tweet_title').value
-      ).to eq @tweet1.title
-      expect(
-        find('tweet_introduction').value
-      ).to eq @tweet1.introduction
       # 投稿内容を編集する
-      attach_file "tweet[image]", with: "#{@tweet1.image}+編集した画像URL"
-      fill_in "tweet[title]", with: "#{@tweet1.title}+編集したテキスト"
-      fill_in "tweet[introduction]", with: "#{@tweet1.introduction}+編集したテキスト"
+      attach_file "投稿する写真", with: 'app/assets/images/test_image.png'
+      fill_in "タイトル(必須)", with: "#{@tweet1.title}+編集したテキスト"
+      fill_in "説明文(必須)", with: "#{@tweet1.introduction}+編集したテキスト"
       # 編集してもTweetモデルのカウントは変わらないことを確認する
       expect{
         find('input[name="commit"]').click
