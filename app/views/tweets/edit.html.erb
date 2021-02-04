@@ -6,18 +6,18 @@
       <%= render 'layouts/error_messages', model: f.object %>
 
       <div class="m-5 text-white text-shadow text-center">
-        <%= f.label :image, "投稿する写真", class:"h4" %><br />
-        <%= f.file_field :image, class:"text-shadow", name:"tweet_image" %>
+        <%= f.label :image, "投稿する写真", class:"h4"%><br />
+        <%= f.file_field :image, class:"text-shadow"%>
       </div>
 
       <div class="m-3 text-white text-shadow text-center">
         <%= f.label :title, "タイトル(必須)", class:"h4" %><br />
-        <%= f.text_field :title, class:"box-shadow", size:"50", name:"tweet_title" %>
+        <%= f.text_field :title, class:"box-shadow", size:"50" %>
       </div>
 
       <div class="m-5 text-white text-shadow text-center">
-        <%= f.label :introduction, "説明文(必須)", class:"h4" %><br />
-        <%= f.text_area :introduction, size:"100x3", class:"box-shadow", name:"tweet_introduction" %>
+        <%= f.label :introduction, "説明文(必須,140字以内)", class:"h4" %><br />
+        <%= f.text_area :introduction, size:"100x3", class:"box-shadow" %>
       </div>
 
       <div class="mb-5 d-flex align-items-center justify-content-center">

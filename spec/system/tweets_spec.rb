@@ -68,7 +68,7 @@ RSpec.describe '投稿編集', type: :system do
       # 編集ページへ遷移する
       visit edit_tweet_path(@tweet1)
       # 投稿内容を編集する
-      attach_file "投稿する写真", with: 'app/assets/images/test_image.png'
+      attach_file "投稿する写真", with: 'app/assets/images/test_image2.JPG'
       fill_in "タイトル(必須)", with: "#{@tweet1.title}+編集したテキスト"
       fill_in "説明文(必須)", with: "#{@tweet1.introduction}+編集したテキスト"
       # 編集してもTweetモデルのカウントは変わらないことを確認する
@@ -78,7 +78,7 @@ RSpec.describe '投稿編集', type: :system do
       # 投稿1の詳細ページに遷移した事を確認する
       expect(current_path).to eq tweet_path(@tweet1)
       # 投稿1の詳細ページには先ほど変更した内容のツイートが存在することを確認する（画像）
-      expect(page).to eq have_selector("#{@tweet1.image}+編集した画像URL")
+      expect(page).to eq have_selector("img[src$='test_image2.png']")
       # 投稿1の詳細ページには先ほど変更した内容のツイートが存在することを確認する（タイトル）
       expect(page).to eq have_content("#{@tweet1.title}+編集したテキスト")
       # 投稿1の詳細ページには先ほど変更した内容のツイートが存在することを確認する（説明文）
