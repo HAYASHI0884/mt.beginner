@@ -86,33 +86,70 @@ RSpec.describe '投稿編集', type: :system do
     end
     it '管理者であれば他者の投稿の編集を行う事ができる' do
       # 管理者でログインする
+      visit new_user_session_path
+      fill_in 'メールアドレス', with: @admin.email
+      fill_in 'パスワード', with: @admin.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq pages_top_path
+      # ヘッダーに「こんにちは、'adminの名前'さん」が表示されていることを確認する
+      expect(page).to have_content("こんにちは、#{@admin.name}さん")
       # 投稿1の詳細ページへ遷移する
+      visit tweet_path(@tweet1)
       # 投稿1の詳細ページに「編集」ボタンがあることを確認する
+      expect(page).to have_content('編集')
       # 編集ページへ遷移する
-      # すでに投稿済みの内容がフォームに入っていることを確認する
+      visit edit_tweet_path(@tweet1)
       # 投稿内容を編集する
+      attach_file "tweet[image]", 'app/assets/images/test_image2.JPG'
+      fill_in "タイトル(必須)", with: "#{@tweet1.title}+編集したテキスト"
+      fill_in "説明文(必須,140字以内)", with: "#{@tweet1.introduction}+編集したテキスト"
       # 編集してもTweetモデルのカウントは変わらないことを確認する
+      expect{
+        find('input[name="commit"]').click
+      }.to change { Tweet.count }.by(0)
       # 投稿1の詳細ページに遷移した事を確認する
+      expect(current_path).to eq tweet_path(@tweet1)
       # 投稿1の詳細ページには先ほど変更した内容のツイートが存在することを確認する（画像）
-      # 投稿1の詳細ページには先ほど変更した内容のツイートが存在することを確認する（テキスト）
+      expect(page).to have_selector("img[src$='test_image2.JPG']")
+      # 投稿1の詳細ページには先ほど変更した内容のツイートが存在することを確認する（タイトル）
+      expect(page).to have_content("#{@tweet1.title}+編集したテキスト")
+      # 投稿1の詳細ページには先ほど変更した内容のツイートが存在することを確認する（説明文）
+      expect(page).to have_content("#{@tweet1.introduction}+編集したテキスト")
     end
   end
 
   context '投稿編集ができないとき' do
     it 'ログインしたユーザーは自分以外が投稿した写真の詳細画面では編集ボタンが表示されない' do
       # 投稿1を投稿したユーザーでログインする
+      visit new_user_session_path
+      fill_in 'メールアドレス', with: @tweet1.user.email
+      fill_in 'パスワード', with: @tweet1.user.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq pages_top_path
       # 投稿2の詳細ページへ遷移する
+      visit tweet_path(@tweet2)
       # 投稿2に「編集」ボタンがないことを確認する
+      expect(page).to have_no_content('編集')
     end
     it 'ログインしたユーザーは自分以外が投稿した写真の編集画面には遷移できない' do
       # 投稿1を投稿したユーザーでログインする
+      visit new_user_session_path
+      fill_in 'メールアドレス', with: @tweet1.user.email
+      fill_in 'パスワード', with: @tweet1.user.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq pages_top_path
       # 投稿2の編集ページに遷移しようとする
+      visit edit_tweet_path(@tweet2)
       # topページへ遷移することを確認する
+      expect(current_path).to eq pages_top_path
     end
     it 'ログインしていないと写真の編集画面には遷移できない' do
       # indexページに遷移する
+      visit root_path
       # 投稿1の編集画面に遷移しようとする
+      visit edit_tweet_path(@tweet1)
       # ログイン画面に遷移した事を確認する
+      expect(current_path).to eq new_user_session_path
     end
   end
 end
