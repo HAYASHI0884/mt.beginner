@@ -10,6 +10,7 @@ FactoryBot.define do
       email                 {"admin@mail.com"}
       password              {"11111111"}
       password_confirmation {password}
+      admin                 {1}
     end
   end
 end
