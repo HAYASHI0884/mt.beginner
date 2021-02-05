@@ -68,7 +68,7 @@ RSpec.describe '投稿編集', type: :system do
       # 編集ページへ遷移する
       visit edit_tweet_path(@tweet1)
       # 投稿内容を編集する
-      attach_file("tweet[image]", 'app/assets/images/test_image2.JPG')
+      attach_file "tweet[image]", 'app/assets/images/test_image2.JPG'
       fill_in "タイトル(必須)", with: "#{@tweet1.title}+編集したテキスト"
       fill_in "説明文(必須,140字以内)", with: "#{@tweet1.introduction}+編集したテキスト"
       # 編集してもTweetモデルのカウントは変わらないことを確認する
