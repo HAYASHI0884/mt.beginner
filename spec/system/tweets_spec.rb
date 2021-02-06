@@ -173,12 +173,13 @@ RSpec.describe '投稿編集', type: :system do
       expect(page).to have_content('編集')
       # 編集ページへ遷移する
       visit edit_tweet_path(@tweet1)
-      # 削除ボタンを押して、confirmダイアログでOKを選択するとレコードの数が1減ることを確認する
+      # 削除ボタンを押して、confirmダイアログでOKを選択して、topページに移動するとレコードの数が1減ることを確認する
       expect{
         page.accept_confirm do
           find_link('削除', href: tweet_path(@tweet1)).click
         end
-      }.to change{ Tweet.count }.by(0)
+        expect(page).to have_content("こんにちは、#{@tweet1.user.name}さん")
+      }.to change { Tweet.count }.by(-1)
       # topページへ遷移することを確認する
       expect(current_path).to eq pages_top_path
       # topページには投稿1の内容が存在しないことを確認する（画像）
@@ -201,12 +202,13 @@ RSpec.describe '投稿編集', type: :system do
       expect(page).to have_content('編集')
       # 編集ページへ遷移する
       visit edit_tweet_path(@tweet1)
-      # 削除ボタンを押して、confirmダイアログでOKを選択するとレコードの数が1減ることを確認する
+      # 削除ボタンを押して、confirmダイアログでOKを選択して、topページに移動するとレコードの数が1減ることを確認する
       expect{
         page.accept_confirm do
           find_link('削除', href: tweet_path(@tweet1)).click
         end
-      }.to change{ Tweet.count }.by(0)
+        expect(page).to have_content("こんにちは、#{@admin.name}さん")
+      }.to change { Tweet.count }.by(-1)
       # topページへ遷移することを確認する
       expect(current_path).to eq pages_top_path
       # topページには投稿1の内容が存在しないことを確認する（画像）
