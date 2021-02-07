@@ -16,25 +16,25 @@ RSpec.describe Mountain, type: :model do
       it 'nameが空だと登録できない' do
         @mountain.name = ''
         @mountain.valid?
-        expect(@mountain.errors.full_messages).to include("Nameを入力してください")
+        expect(@mountain.errors.full_messages).to include("山の名前を入力してください")
       end
 
       it 'area_idが空だと登録できない' do
         @mountain.area = nil
         @mountain.valid?
-        expect(@mountain.errors.full_messages).to include("Areaを入力してください")
+        expect(@mountain.errors.full_messages).to include("地域を入力してください")
       end
 
       it 'elevation_idが空だと登録できない' do
         @mountain.elevation = nil
         @mountain.valid?
-        expect(@mountain.errors.full_messages).to include("Elevationを入力してください")
+        expect(@mountain.errors.full_messages).to include("標高を入力してください")
       end
 
       it 'climb_time_idが空だと登録できない' do
         @mountain.climb_time = nil
         @mountain.valid?
-        expect(@mountain.errors.full_messages).to include("Climb timeを入力してください")
+        expect(@mountain.errors.full_messages).to include("総歩行時間を入力してください")
       end
     end
   end
