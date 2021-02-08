@@ -192,6 +192,27 @@ RSpec.describe "山の削除", type: :system do
 
   context '山の削除ができるとき' do
     it '管理者は山の削除を行う事ができる' do
+      # 管理者でログインする
+      visit new_user_session_path
+      fill_in 'メールアドレス', with: @admin.email
+      fill_in 'パスワード', with: @admin.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq pages_top_path
+      # 管理者ページに遷移する
+      visit admin_mountains_path
+      # 山の編集ページに遷移する
+      visit edit_mountain_path(@mountain)
+      # 削除ボタンを押して、confirmダイアログでOKを選択して、管理者ページに移動するとレコードの数が1減ることを確認する
+      expect{
+        page.accept_confirm do
+          find_link('削除', href: mountain_path(@mountain)).click
+        end
+        expect(page).to have_content("管理者山検索トップページ")
+      }.to change { Mountain.count }.by(-1)
+      # 管理者ページへ遷移することを確認する
+      expect(current_path).to eq admin_mountains_path
+      # 管理者ページには削除した山の内容が存在しないことを確認する
+      expect(page).to have_no_content(@mountain.name)
     end
   end
 end
