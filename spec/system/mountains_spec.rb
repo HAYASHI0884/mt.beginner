@@ -122,35 +122,76 @@ RSpec.describe "山の編集", type: :system do
     @user = FactoryBot.create(:user)
     @admin = FactoryBot.create(:admin)
     @mountain = FactoryBot.create(:mountain)
+    @area = FactoryBot.create(:area, name: "青森県")
+    @elevation = FactoryBot.create(:elevation, name: "1000m以上、2000m未満")
+    @climb_time = FactoryBot.create(:climb_time, name: "2時間以上、4時間未満")
   end
 
   context '山の編集ができるとき' do
     it '管理者は山の編集を行う事ができる' do
-
+      # 管理者でログインする
+      visit new_user_session_path
+      fill_in 'メールアドレス', with: @admin.email
+      fill_in 'パスワード', with: @admin.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq pages_top_path
+      # 管理者ページに遷移する
+      visit admin_mountains_path
+      # 山の編集ページに遷移する
+      visit edit_mountain_path(@mountain)
+      # フォームに情報を入力する
+      attach_file "mountain[image]", 'app/assets/images/test_image2.JPG'
+      fill_in '山の名前', with: "#{@mountain.name}+編集したテキスト"
+      select @area.name, from: "地域"
+      select @elevation.name, from: "標高"
+      select @climb_time.name, from: "総歩行時間"
+      # 編集してもMountainモデルのカウントは変わらないことを確認する
+      expect{
+        find('input[name="commit"]').click
+      }.to change { Mountain.count }.by(0)
+      # 管理者ページに遷移した事を確認する
+      expect(current_path).to eq admin_mountains_path
+      # 管理者ページには先ほど変更した内容の情報が存在することを確認する
+      expect(page).to have_content("#{@mountain.name}+編集したテキスト")
+      expect(page).to have_content(@area.name)
+      expect(page).to have_content(@elevation.name)
+      expect(page).to have_content(@climb_time.name)
     end
   end
 
   context '山の編集ができないとき' do
     it '管理者以外のユーザーは山の編集画面に遷移できない' do
-
+      # ログインする
+      visit new_user_session_path
+      fill_in 'メールアドレス', with: @user.email
+      fill_in 'パスワード', with: @user.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq pages_top_path
+      # 管理者ページに遷移しようとする
+      visit edit_mountain_path(@mountain)
+      # topページへ遷移することを確認する
+      expect(current_path).to eq pages_top_path
     end
 
     it 'ログインしていないユーザーは山の編集画面に遷移できない' do
-
+      # indexページに遷移する
+      visit root_path
+      # 管理者ページに遷移しようとする
+      visit edit_mountain_path(@mountain)
+      # ログイン画面に遷移した事を確認する
+      expect(current_path).to eq new_user_session_path
     end
   end
 end
 
 RSpec.describe "山の削除", type: :system do
   before do
-    @user = FactoryBot.create(:user)
     @admin = FactoryBot.create(:admin)
     @mountain = FactoryBot.create(:mountain)
   end
 
   context '山の削除ができるとき' do
     it '管理者は山の削除を行う事ができる' do
-
     end
   end
 end
