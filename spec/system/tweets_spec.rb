@@ -154,7 +154,7 @@ RSpec.describe '投稿編集', type: :system do
   end
 end
 
-RSpec.describe '投稿編集', type: :system do
+RSpec.describe '投稿削除', type: :system do
   before do
     @admin = FactoryBot.create(:admin)
     @tweet1 = FactoryBot.create(:tweet)
@@ -187,6 +187,7 @@ RSpec.describe '投稿編集', type: :system do
       # topページには投稿1の内容が存在しないことを確認する（タイトル）
       expect(page).to have_no_content("#{@tweet1.title}")
     end
+
     it '管理者であれば他者の投稿の削除ができる' do
       # 管理者でログインする
       visit new_user_session_path
@@ -215,6 +216,80 @@ RSpec.describe '投稿編集', type: :system do
       expect(page).to have_no_selector("img[src$='test_image.png']")
       # topページには投稿1の内容が存在しないことを確認する（タイトル）
       expect(page).to have_no_content("#{@tweet1.title}")
+    end
+
+    it '管理者であれば投稿一覧ページより、他者の投稿の削除ができる' do
+      # 管理者でログインする
+      visit new_user_session_path
+      fill_in 'メールアドレス', with: @admin.email
+      fill_in 'パスワード', with: @admin.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq pages_top_path
+      # 投稿一覧ページに遷移する
+      visit tweets_path
+      # 投稿一覧ページに投稿があることを確認する
+      expect(page).to have_content(@tweet1.title)
+      # 削除ボタンを押して、confirmダイアログでOKを選択して、topページに移動するとレコードの数が1減ることを確認する
+      expect{
+        page.accept_confirm do
+          find_link('削除', href: tweet_path(@tweet1)).click
+        end
+        expect(page).to have_content("こんにちは、#{@admin.name}さん")
+      }.to change { Tweet.count }.by(-1)
+      # 投稿一覧ページに遷移していることを確認する
+      expect(current_path).to eq pages_top_path
+    end
+  end
+end
+
+RSpec.describe '投稿一覧', type: :system do
+  before do
+    @user = FactoryBot.create(:user)
+    @admin = FactoryBot.create(:admin)
+    @tweet1 = FactoryBot.create(:tweet)
+    @tweet2 = FactoryBot.create(:tweet, title: "title2")
+  end
+
+  context '投稿一覧を見れるとき' do
+    it '管理者であれば投稿一覧ページを見る事ができる' do
+      # 管理者でログインする
+      visit new_user_session_path
+      fill_in 'メールアドレス', with: @admin.email
+      fill_in 'パスワード', with: @admin.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq pages_top_path
+      # topページに2つの投稿があることを確認する
+      expect(page).to have_content(@tweet1.title)
+      expect(page).to have_content(@tweet2.title)
+      # 投稿一覧ページに遷移する
+      visit tweets_path
+      # 投稿一覧ページにも2つの投稿があることを確認する
+      expect(page).to have_content(@tweet1.title)
+      expect(page).to have_content(@tweet2.title)
+    end
+  end
+
+  context '投稿一覧を見れないとき' do
+    it '管理者以外のユーザーは投稿一覧ページに遷移できない' do
+      # ログインする
+      visit new_user_session_path
+      fill_in 'メールアドレス', with: @user.email
+      fill_in 'パスワード', with: @user.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq pages_top_path
+      # 投稿一覧ページに遷移しようとする
+      visit tweets_path
+      # topページへ遷移することを確認する
+      expect(current_path).to eq pages_top_path
+    end
+
+    it 'ログインしていないユーザーは投稿一覧ページに遷移できない' do
+      # indexページに遷移する
+      visit root_path
+      # 投稿一覧ページに遷移しようとする
+      visit tweets_path
+      # ログイン画面に遷移した事を確認する
+      expect(current_path).to eq new_user_session_path
     end
   end
 end
