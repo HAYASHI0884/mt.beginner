@@ -1,0 +1,6 @@
+<h1>管理者ルーム管理ページ</h1>
+<% @rooms.each do |room| %>
+  <%= link_to room.name, room_messages_path(room.id) %>
+  <%= room.user.name %>
+  <%= link_to "削除", room_path(room.id), method: :delete, data: { confirm: "本当に削除しますか?" }, class:"ml-3 text-danger font-weight-bold" %></br>
+<% end %>
