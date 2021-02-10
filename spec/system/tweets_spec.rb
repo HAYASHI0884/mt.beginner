@@ -238,6 +238,8 @@ RSpec.describe '投稿削除', type: :system do
       }.to change { Tweet.count }.by(-1)
       # 投稿一覧ページに遷移していることを確認する
       expect(current_path).to eq pages_top_path
+      # 投稿一覧ページに投稿がないことを確認する
+      expect(page).to have_no_content(@tweet1.title)
     end
   end
 end
