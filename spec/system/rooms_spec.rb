@@ -160,28 +160,50 @@ end
 RSpec.describe "ルーム一覧", type: :system do
   before do
     @user = FactoryBot.create(:user)
-    @user2 = FactoryBot.create(:user)
     @room = FactoryBot.create(:room)
-    @room2 = FactoryBot.create(:room)
+    @room2 = FactoryBot.create(:room, name:"test2")
   end
 
   context 'ルーム一覧を見れるとき' do
     it 'ログインしたユーザーは、自身のルーム一覧を見る事ができる' do
-
-    end
-
-    it '管理者であれば、他者のルーム一覧を見る事ができる' do
-
+      # ログインする
+      visit new_user_session_path
+      fill_in 'メールアドレス', with: @room.user.email
+      fill_in 'パスワード', with: @room.user.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq pages_top_path
+      # topページに2つのルームがあることを確認する
+      expect(page).to have_content(@room.name)
+      expect(page).to have_content(@room2.name)
+      # ルーム一覧ページに遷移する
+      visit room_path(@room.user)
+      # ルーム一覧ページには自身の所属しているルームのみ表示されていることを確認する
+      expect(page).to have_content(@room.name)
+      expect(page).to have_no_content(@room2.name)
     end
   end
 
   context 'ルーム一覧を見れないとき' do
     it 'ログインしたユーザーは、自身以外のルーム一覧を見る事ができない' do
-
+      # ログインする
+      visit new_user_session_path
+      fill_in 'メールアドレス', with: @user.email
+      fill_in 'パスワード', with: @user.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq pages_top_path
+      # ルーム内に遷移しようとする
+      visit room_path(@room.user)
+      # topページへ遷移することを確認する
+      expect(current_path).to eq pages_top_path
     end
 
     it 'ログインしていなければ、ルーム一覧ページを見る事ができない' do
-
+      # indexページに遷移する
+      visit root_path
+      # ルーム内に遷移しようとする
+      visit room_path(@room.user)
+      # ログイン画面に遷移した事を確認する
+      expect(current_path).to eq new_user_session_path
     end
   end
 end
@@ -196,17 +218,44 @@ RSpec.describe "ルーム管理ページ", type: :system do
 
   context 'ルーム管理ページを見れるとき' do
     it '管理者であれば、ルーム管理ページを見る事ができる' do
-
+      # 管理者でログインする
+      visit new_user_session_path
+      fill_in 'メールアドレス', with: @admin.email
+      fill_in 'パスワード', with: @admin.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq pages_top_path
+      # topページに2つの投稿があることを確認する
+      expect(page).to have_content(@room.name)
+      expect(page).to have_content(@room2.name)
+      # 投稿一覧ページに遷移する
+      visit rooms_path
+      # 投稿一覧ページにも2つの投稿があることを確認する
+      expect(page).to have_content(@room.name)
+      expect(page).to have_content(@room2.name)
     end
   end
 
   context 'ルーム管理ページを見れないとき' do
     it '管理者以外のユーザーはルーム一覧ページに遷移できない' do
-
+      # ログインする
+      visit new_user_session_path
+      fill_in 'メールアドレス', with: @user.email
+      fill_in 'パスワード', with: @user.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq pages_top_path
+      # 投稿一覧ページに遷移しようとする
+      visit rooms_path
+      # topページへ遷移することを確認する
+      expect(current_path).to eq pages_top_path
     end
 
     it 'ログインしていないユーザーはルーム管理ページに遷移できない' do
-
+      # indexページに遷移する
+      visit root_path
+      # 投稿一覧ページに遷移しようとする
+      visit rooms_path
+      # ログイン画面に遷移した事を確認する
+      expect(current_path).to eq new_user_session_path
     end
   end
 end
