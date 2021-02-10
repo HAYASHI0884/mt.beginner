@@ -15,7 +15,7 @@ class TweetsController < ApplicationController
   end
 
   def edit
-    redirect_to pages_top_path unless current_user.id == @tweet.user.id
+    redirect_to pages_top_path unless current_user.id == @tweet.user.id || current_user.admin == true
   end
 
   def create

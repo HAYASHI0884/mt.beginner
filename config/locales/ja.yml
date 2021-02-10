@@ -12,3 +12,8 @@ ja:
        image: 画像
       room:
        name: ルーム名
+      mountain:
+       name: 山の名前
+       area: 地域
+       elevation: 標高
+       climb_time: 総歩行時間

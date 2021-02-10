@@ -7,13 +7,12 @@ Rails.application.routes.draw do
   get "pages/top"
   get "pages/explain"
   resources :pages, only:[:index, :show, :edit, :update]
-  resources :mountains do
-    namespace :admin do
-      resources :mountains, only:[:index]
-    end
+  resources :mountains
+  namespace :admin do
+    resources :mountains, only:[:index]
   end
   resources :tweets
-  resources :rooms, only:[:new, :create, :destroy, :show] do
+  resources :rooms, only:[:index, :new, :create, :destroy, :show] do
     resources :messages, only:[:index, :create]
   end
 

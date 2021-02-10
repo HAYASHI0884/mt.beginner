@@ -3,7 +3,7 @@ FactoryBot.define do
     association  :area
     association  :elevation
     association  :climb_time
-    name          {"test"}
+    name          {"mountain_name"}
 
     after(:build) do |mountain|
       mountain.image.attach(io: File.open('app/assets/images/test_image.png'), filename: 'test_image.png')

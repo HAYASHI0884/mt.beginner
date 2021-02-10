@@ -2,7 +2,7 @@
 
   <div class="text-white d-flex align-items-center justify-content-between">
     <h1 class="roomname-bg text-shadow"><%= @room.name %></h1>
-    <% if current_user == @room.user %>
+    <% if current_user == @room.user || current_user.admin == true %>
       <%= link_to "チャットを終了する(ルームの削除)", room_path(@room), method: :delete, data: { confirm: '本当に削除しますか?' }, class:"mr-4 btn btn-danger rounded-pill px-2 mx-4 box-shadow" %>
     <% end %>
   </div>
@@ -44,10 +44,8 @@
 
   <%= form_with model: [@room, @message], local: true, class:"message-field" do |f| %>
     <%= f.text_field :text, placeholder: ' 文字の入力', size:'95' %>
-    <label class="form-image px-2 py-1 m-3 rounded box-shadow">
-      <div class="text-white">画像</div>
-      <%= f.file_field :image, class:"d-none" %>
-    </label>
+    <%= f.label :image, "画像", class:"text-white form-image px-2 py-1 m-3 rounded box-shadow" %>
+    <%= f.file_field :image, class:"d-none" %>
     <%= f.submit '送信', class:"mr-5 px-2 py-1 box-shadow" %>
   <% end %>
 </div>

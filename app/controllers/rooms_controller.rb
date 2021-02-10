@@ -1,5 +1,10 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!
+  before_action :if_not_admin, only:[:index]
+
+  def index
+    @rooms = Room.includes(:messages, :entries, :users, :user).order(id: 'DESC')
+  end
 
   def new
     @room = Room.new
@@ -27,10 +32,14 @@ class RoomsController < ApplicationController
   def show
     user = User.find(params[:id])
     @rooms = Room.includes(:user, :users, :messages, :entries).order(id: 'DESC')
-    redirect_to pages_top_path unless current_user.id == user.id
+    redirect_to pages_top_path unless current_user.id == user.id || current_user.admin == true
   end
 
   private
+
+  def if_not_admin
+    redirect_to pages_top_path unless current_user.admin?
+  end
 
   def room_params
     params.require(:room).permit(:name, user_ids: []).merge(user_id: current_user.id)

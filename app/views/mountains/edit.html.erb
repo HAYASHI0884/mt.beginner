@@ -18,11 +18,11 @@
   <%= f.label :elevation_id, "標高" %>
   <%= f.collection_select :elevation_id, @elevation, :id, :name, include_blank: "指定なし" %>
 
-  <%= f.label :climb_time_name, "総歩行時間" %>
+  <%= f.label :climb_time_id, "総歩行時間" %>
   <%= f.collection_select :climb_time_id, @climb_time, :id, :name, include_blank: "指定なし" %>
 
   <%= f.submit "完了" %>
 
 <% end %>
 
-<%= link_to "戻る", "/mountains/:mountain_id/admin/mountains" %>
+<%= link_to "戻る", admin_mountains_path %>
