@@ -4,7 +4,7 @@
     <div class="display-4 text-center text-white text-shadow m-3">こちらの山はいかがでしょうか？</div>
 
     <div class="d-flex align-items-center justify-content-center flex-column m-3 h-100">
-      <div class="d-flex align-items-center justify-content-center">
+      <div class="d-flex align-items-center justify-content-center image-shadow">
         <% if @mountain.image.attached? %>
           <%= image_tag @mountain.image.variant(combine_options:{gravity: :center, resize:"400x400^",crop:"400x400+0+0"}).processed %>
         <% end %>
