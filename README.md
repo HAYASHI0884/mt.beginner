@@ -33,6 +33,7 @@ https://mt-beginner.herokuapp.com/
 * AWS(S3)
 
 ## 実装機能一覧
+* ユーザー管理機能
 * 山の検索機能
 * 写真共有機能
 * チャットルーム作成機能
