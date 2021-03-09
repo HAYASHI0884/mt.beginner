@@ -13,6 +13,9 @@ class PagesController < ApplicationController
   def explain
   end
 
+  def user
+  end
+
   def show
   end
 
