@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe "写真投稿", type: :system do
+RSpec.describe '写真投稿', type: :system do
   before do
     @user = FactoryBot.create(:user)
   end
 
-  context '写真投稿ができるとき'do
+  context '写真投稿ができるとき' do
     it 'ログインしたユーザーは新規投稿できる' do
       # ログインする
       visit new_user_session_path
@@ -18,24 +18,24 @@ RSpec.describe "写真投稿", type: :system do
       # 新規投稿画面に移動する
       visit new_tweet_path
       # フォームに情報を入力する
-      attach_file "tweet[image]", 'app/assets/images/test_image.png'
-      fill_in 'タイトル(必須)', with: "title"
-      fill_in '説明文(必須,140字以内)' , with: "introduction"
+      attach_file 'tweet[image]', 'app/assets/images/test_image.png'
+      fill_in 'タイトル(必須)', with: 'title'
+      fill_in '説明文(必須,140字以内)', with: 'introduction'
       # 送信するとTweetモデルのカウントが1上がることを確認する
-      expect{
+      expect  do
         find('input[name="commit"]').click
-      }.to change { Tweet.count }.by(1)
+      end.to change { Tweet.count }.by(1)
       # トップページに遷移する事を確認する
       expect(current_path).to eq pages_top_path
       # トップページには先ほど投稿した内容のツイートが存在することを確認する（画像）
       expect(page).to have_selector("img[src$='test_image.png']")
       # トップページには先ほど投稿した内容のツイートが存在することを確認する（タイトル）
-      expect(page).to have_content("title")
+      expect(page).to have_content('title')
       # トップページには先ほど投稿した内容のツイートが存在することを確認する（ユーザーネーム）
-      expect(page).to have_content("#{@user.name}")
+      expect(page).to have_content(@user.name.to_s)
     end
   end
-  context '写真投稿ができないとき'do
+  context '写真投稿ができないとき' do
     it 'ログインしていないと新規投稿ページに遷移できない' do
       # indexページに遷移する
       visit root_path
@@ -68,13 +68,13 @@ RSpec.describe '投稿編集', type: :system do
       # 編集ページへ遷移する
       visit edit_tweet_path(@tweet1)
       # 投稿内容を編集する
-      attach_file "tweet[image]", 'app/assets/images/test_image2.JPG'
-      fill_in "タイトル(必須)", with: "#{@tweet1.title}+編集したテキスト"
-      fill_in "説明文(必須,140字以内)", with: "#{@tweet1.introduction}+編集したテキスト"
+      attach_file 'tweet[image]', 'app/assets/images/test_image2.JPG'
+      fill_in 'タイトル(必須)', with: "#{@tweet1.title}+編集したテキスト"
+      fill_in '説明文(必須,140字以内)', with: "#{@tweet1.introduction}+編集したテキスト"
       # 編集してもTweetモデルのカウントは変わらないことを確認する
-      expect{
+      expect  do
         find('input[name="commit"]').click
-      }.to change { Tweet.count }.by(0)
+      end.to change { Tweet.count }.by(0)
       # 投稿1の詳細ページに遷移した事を確認する
       expect(current_path).to eq tweet_path(@tweet1)
       # 投稿1の詳細ページには先ほど変更した内容のツイートが存在することを確認する（画像）
@@ -100,13 +100,13 @@ RSpec.describe '投稿編集', type: :system do
       # 編集ページへ遷移する
       visit edit_tweet_path(@tweet1)
       # 投稿内容を編集する
-      attach_file "tweet[image]", 'app/assets/images/test_image2.JPG'
-      fill_in "タイトル(必須)", with: "#{@tweet1.title}+編集したテキスト"
-      fill_in "説明文(必須,140字以内)", with: "#{@tweet1.introduction}+編集したテキスト"
+      attach_file 'tweet[image]', 'app/assets/images/test_image2.JPG'
+      fill_in 'タイトル(必須)', with: "#{@tweet1.title}+編集したテキスト"
+      fill_in '説明文(必須,140字以内)', with: "#{@tweet1.introduction}+編集したテキスト"
       # 編集してもTweetモデルのカウントは変わらないことを確認する
-      expect{
+      expect  do
         find('input[name="commit"]').click
-      }.to change { Tweet.count }.by(0)
+      end.to change { Tweet.count }.by(0)
       # 投稿1の詳細ページに遷移した事を確認する
       expect(current_path).to eq tweet_path(@tweet1)
       # 投稿1の詳細ページには先ほど変更した内容のツイートが存在することを確認する（画像）
@@ -174,18 +174,18 @@ RSpec.describe '投稿削除', type: :system do
       # 編集ページへ遷移する
       visit edit_tweet_path(@tweet1)
       # 削除ボタンを押して、confirmダイアログでOKを選択して、topページに移動するとレコードの数が1減ることを確認する
-      expect{
+      expect do
         page.accept_confirm do
           find_link('削除', href: tweet_path(@tweet1)).click
         end
         expect(page).to have_content("こんにちは、#{@tweet1.user.name}さん")
-      }.to change { Tweet.count }.by(-1)
+      end.to change { Tweet.count }.by(-1)
       # topページへ遷移することを確認する
       expect(current_path).to eq pages_top_path
       # topページには投稿1の内容が存在しないことを確認する（画像）
       expect(page).to have_no_selector("img[src$='test_image.png']")
       # topページには投稿1の内容が存在しないことを確認する（タイトル）
-      expect(page).to have_no_content("#{@tweet1.title}")
+      expect(page).to have_no_content(@tweet1.title.to_s)
     end
 
     it '管理者であれば他者の投稿の削除ができる' do
@@ -204,18 +204,18 @@ RSpec.describe '投稿削除', type: :system do
       # 編集ページへ遷移する
       visit edit_tweet_path(@tweet1)
       # 削除ボタンを押して、confirmダイアログでOKを選択して、topページに移動するとレコードの数が1減ることを確認する
-      expect{
+      expect do
         page.accept_confirm do
           find_link('削除', href: tweet_path(@tweet1)).click
         end
         expect(page).to have_content("こんにちは、#{@admin.name}さん")
-      }.to change { Tweet.count }.by(-1)
+      end.to change { Tweet.count }.by(-1)
       # topページへ遷移することを確認する
       expect(current_path).to eq pages_top_path
       # topページには投稿1の内容が存在しないことを確認する（画像）
       expect(page).to have_no_selector("img[src$='test_image.png']")
       # topページには投稿1の内容が存在しないことを確認する（タイトル）
-      expect(page).to have_no_content("#{@tweet1.title}")
+      expect(page).to have_no_content(@tweet1.title.to_s)
     end
 
     it '管理者であれば投稿一覧ページより、他者の投稿の削除ができる' do
@@ -230,12 +230,12 @@ RSpec.describe '投稿削除', type: :system do
       # 投稿一覧ページに投稿があることを確認する
       expect(page).to have_content(@tweet1.title)
       # 削除ボタンを押して、confirmダイアログでOKを選択して、topページに移動するとレコードの数が1減ることを確認する
-      expect{
+      expect do
         page.accept_confirm do
           find_link('削除', href: tweet_path(@tweet1)).click
         end
         expect(page).to have_content("こんにちは、#{@admin.name}さん")
-      }.to change { Tweet.count }.by(-1)
+      end.to change { Tweet.count }.by(-1)
       # 投稿一覧ページに遷移していることを確認する
       expect(current_path).to eq pages_top_path
       # 投稿一覧ページに投稿がないことを確認する
@@ -249,7 +249,7 @@ RSpec.describe '投稿一覧', type: :system do
     @user = FactoryBot.create(:user)
     @admin = FactoryBot.create(:admin)
     @tweet1 = FactoryBot.create(:tweet)
-    @tweet2 = FactoryBot.create(:tweet, title: "title2")
+    @tweet2 = FactoryBot.create(:tweet, title: 'title2')
   end
 
   context '投稿一覧を見れるとき' do

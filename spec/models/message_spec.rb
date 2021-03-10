@@ -17,17 +17,17 @@ RSpec.describe Message, type: :model do
       end
 
       it 'imageがあれば送信できる' do
-        @message.text = ""
+        @message.text = ''
         expect(@message).to be_valid
       end
     end
 
     context 'メッセージが送信できない場合' do
       it 'text,imageが空だと出品できない' do
-        @message.text = ""
+        @message.text = ''
         @message.image = nil
         @message.valid?
-        expect(@message.errors.full_messages).to include("Textを入力してください")
+        expect(@message.errors.full_messages).to include('Textを入力してください')
       end
     end
   end

@@ -8,14 +8,13 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :encrypted_password, length: { minimum: 6 }
 
-
   has_one_attached :image, dependent: :destroy
   has_many :tweets, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
 
   def self.guest
-    find_or_create_by!(name:'ゲストユーザー', email: 'guest@example.com') do |user|
+    find_or_create_by!(name: 'ゲストユーザー', email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
     end
   end

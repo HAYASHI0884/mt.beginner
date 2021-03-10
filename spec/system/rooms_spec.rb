@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe "ルーム作成", type: :system do
+RSpec.describe 'ルーム作成', type: :system do
   before do
     @user = FactoryBot.create(:user)
     @user2 = FactoryBot.create(:user)
     @room = FactoryBot.build(:room)
   end
 
-  context 'ルーム作成ができるとき'do
+  context 'ルーム作成ができるとき' do
     it 'ログインしたユーザーはルーム作成できる' do
       # ログインする
       visit new_user_session_path
@@ -20,12 +20,12 @@ RSpec.describe "ルーム作成", type: :system do
       # 新規投稿画面に移動する
       visit new_room_path
       # フォームに情報を入力する
-      fill_in "チャットルーム名", with: @room.name
-      select @user2.name , from: "チャットメンバー"
+      fill_in 'チャットルーム名', with: @room.name
+      select @user2.name, from: 'チャットメンバー'
       # 送信するとRoomモデルのカウントが1上がることを確認する
-      expect{
+      expect do
         find('input[name="commit"]').click
-      }.to change { Room.count }.by(1)
+      end.to change { Room.count }.by(1)
       # トップページに遷移する事を確認する
       expect(current_path).to eq pages_top_path
       # トップページには先ほど作成したルームが存在することを確認する
@@ -33,7 +33,7 @@ RSpec.describe "ルーム作成", type: :system do
     end
   end
 
-  context 'ルーム作成ができないとき'do
+  context 'ルーム作成ができないとき' do
     it 'ログインしていないとルーム作成ページに遷移できない' do
       # indexページに遷移する
       visit root_path
@@ -45,7 +45,7 @@ RSpec.describe "ルーム作成", type: :system do
   end
 end
 
-RSpec.describe "ルーム削除", type: :system do
+RSpec.describe 'ルーム削除', type: :system do
   before do
     @user = FactoryBot.create(:user)
     @admin = FactoryBot.create(:admin)
@@ -66,14 +66,14 @@ RSpec.describe "ルーム削除", type: :system do
       visit room_messages_path(@room)
       # 削除ボタンがあることを確認する
       expect(current_path).to eq room_messages_path(@room)
-      expect(page).to have_content("チャットを終了する(ルームの削除)")
+      expect(page).to have_content('チャットを終了する(ルームの削除)')
       # 削除ボタンを押して、confirmダイアログでOKを選択して、topページに移動するとレコードの数が1減ることを確認する
-      expect{
+      expect do
         page.accept_confirm do
           find_link('チャットを終了する(ルームの削除)', href: room_path(@room)).click
         end
         expect(page).to have_content("こんにちは、#{@room.user.name}さん")
-      }.to change { Room.count }.by(-1)
+      end.to change { Room.count }.by(-1)
       # topページに遷移していることを確認する
       expect(current_path).to eq pages_top_path
       # topページにルームが存在しないことを確認する
@@ -93,14 +93,14 @@ RSpec.describe "ルーム削除", type: :system do
       visit room_messages_path(@room)
       # 削除ボタンがあることを確認する
       expect(current_path).to eq room_messages_path(@room)
-      expect(page).to have_content("チャットを終了する(ルームの削除)")
+      expect(page).to have_content('チャットを終了する(ルームの削除)')
       # 削除ボタンを押して、confirmダイアログでOKを選択して、topページに移動するとレコードの数が1減ることを確認する
-      expect{
+      expect do
         page.accept_confirm do
           find_link('チャットを終了する(ルームの削除)', href: room_path(@room)).click
         end
         expect(page).to have_content("こんにちは、#{@admin.name}さん")
-      }.to change { Room.count }.by(-1)
+      end.to change { Room.count }.by(-1)
       # topページに遷移していることを確認する
       expect(current_path).to eq pages_top_path
       # topページにルームが存在しないことを確認する
@@ -119,12 +119,12 @@ RSpec.describe "ルーム削除", type: :system do
       # ルーム一覧ページにルームがあることを確認する
       expect(page).to have_content(@room.name)
       # 削除ボタンを押して、confirmダイアログでOKを選択して、topページに移動するとレコードの数が1減ることを確認する
-      expect{
+      expect do
         page.accept_confirm do
           find_link('削除', href: room_path(@room)).click
         end
         expect(page).to have_content("こんにちは、#{@admin.name}さん")
-      }.to change { Room.count }.by(-1)
+      end.to change { Room.count }.by(-1)
       # ルーム一覧ページに遷移していることを確認する
       expect(current_path).to eq pages_top_path
       # ルーム一覧ページにルームが存在しないことを確認する
@@ -157,11 +157,11 @@ RSpec.describe "ルーム削除", type: :system do
   end
 end
 
-RSpec.describe "ルーム一覧", type: :system do
+RSpec.describe 'ルーム一覧', type: :system do
   before do
     @user = FactoryBot.create(:user)
     @room = FactoryBot.create(:room)
-    @room2 = FactoryBot.create(:room, name:"test2")
+    @room2 = FactoryBot.create(:room, name: 'test2')
   end
 
   context 'ルーム一覧を見れるとき' do
@@ -208,7 +208,7 @@ RSpec.describe "ルーム一覧", type: :system do
   end
 end
 
-RSpec.describe "ルーム管理ページ", type: :system do
+RSpec.describe 'ルーム管理ページ', type: :system do
   before do
     @user = FactoryBot.create(:user)
     @admin = FactoryBot.create(:admin)

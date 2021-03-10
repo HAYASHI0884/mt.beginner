@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe "山の検索", type: :system do
+RSpec.describe '山の検索', type: :system do
   before do
     @user = FactoryBot.create(:user)
     @mountain = FactoryBot.create(:mountain)
-    @mountain2 = FactoryBot.create(:mountain, name: "mountain_name2", area: FactoryBot.create(:area, name: "青森県"), elevation: FactoryBot.create(:elevation, name: "1000m以上、2000m未満"), climb_time: FactoryBot.create(:climb_time, name: "2時間以上、4時間未満"))
+    @mountain2 = FactoryBot.create(:mountain, name: 'mountain_name2', area: FactoryBot.create(:area, name: '青森県'), elevation: FactoryBot.create(:elevation, name: '1000m以上、2000m未満'), climb_time: FactoryBot.create(:climb_time, name: '2時間以上、4時間未満'))
   end
 
   context '山の検索ができるとき' do
@@ -23,7 +23,7 @@ RSpec.describe "山の検索", type: :system do
       expect(page).to have_content(@mountain.name)
       expect(page).to have_content(@mountain2.name)
       # フォームに情報を入力し、検索ボタンを押す
-      fill_in '山の名前', with: "#{@mountain.name}"
+      fill_in '山の名前', with: @mountain.name.to_s
       select '北海道', from: '地域'
       select '1000m未満', from: '標高'
       select '2時間未満', from: '総歩行時間'
@@ -53,7 +53,7 @@ RSpec.describe "山の検索", type: :system do
   end
 end
 
-RSpec.describe "山の投稿", type: :system do
+RSpec.describe '山の投稿', type: :system do
   before do
     @user = FactoryBot.create(:user)
     @admin = FactoryBot.create(:admin)
@@ -76,15 +76,15 @@ RSpec.describe "山の投稿", type: :system do
       # 投稿画面に遷移する
       visit new_mountain_path
       # フォームに情報を入力する
-      attach_file "mountain[image]", 'app/assets/images/test_image.png'
+      attach_file 'mountain[image]', 'app/assets/images/test_image.png'
       fill_in '山の名前', with: @mountain.name
-      select @area.name, from: "地域"
-      select @elevation.name, from: "標高"
-      select @climb_time.name, from: "総歩行時間"
+      select @area.name, from: '地域'
+      select @elevation.name, from: '標高'
+      select @climb_time.name, from: '総歩行時間'
       # 送信するとMountainモデルのカウントが1上がることを確認する
-      expect{
+      expect do
         find('input[name="commit"]').click
-      }.to change { Mountain.count }.by(1)
+      end.to change { Mountain.count }.by(1)
       # 管理者トップページに遷移することを確認する
       expect(current_path).to eq admin_mountains_path
       # 管理者トップページに先ほど投稿した山が存在することを確認する
@@ -117,14 +117,14 @@ RSpec.describe "山の投稿", type: :system do
   end
 end
 
-RSpec.describe "山の編集", type: :system do
+RSpec.describe '山の編集', type: :system do
   before do
     @user = FactoryBot.create(:user)
     @admin = FactoryBot.create(:admin)
     @mountain = FactoryBot.create(:mountain)
-    @area = FactoryBot.create(:area, name: "青森県")
-    @elevation = FactoryBot.create(:elevation, name: "1000m以上、2000m未満")
-    @climb_time = FactoryBot.create(:climb_time, name: "2時間以上、4時間未満")
+    @area = FactoryBot.create(:area, name: '青森県')
+    @elevation = FactoryBot.create(:elevation, name: '1000m以上、2000m未満')
+    @climb_time = FactoryBot.create(:climb_time, name: '2時間以上、4時間未満')
   end
 
   context '山の編集ができるとき' do
@@ -140,15 +140,15 @@ RSpec.describe "山の編集", type: :system do
       # 山の編集ページに遷移する
       visit edit_mountain_path(@mountain)
       # フォームに情報を入力する
-      attach_file "mountain[image]", 'app/assets/images/test_image2.JPG'
+      attach_file 'mountain[image]', 'app/assets/images/test_image2.JPG'
       fill_in '山の名前', with: "#{@mountain.name}+編集したテキスト"
-      select @area.name, from: "地域"
-      select @elevation.name, from: "標高"
-      select @climb_time.name, from: "総歩行時間"
+      select @area.name, from: '地域'
+      select @elevation.name, from: '標高'
+      select @climb_time.name, from: '総歩行時間'
       # 編集してもMountainモデルのカウントは変わらないことを確認する
-      expect{
+      expect do
         find('input[name="commit"]').click
-      }.to change { Mountain.count }.by(0)
+      end.to change { Mountain.count }.by(0)
       # 管理者ページに遷移した事を確認する
       expect(current_path).to eq admin_mountains_path
       # 管理者ページには先ほど変更した内容の情報が存在することを確認する
@@ -184,7 +184,7 @@ RSpec.describe "山の編集", type: :system do
   end
 end
 
-RSpec.describe "山の削除", type: :system do
+RSpec.describe '山の削除', type: :system do
   before do
     @admin = FactoryBot.create(:admin)
     @mountain = FactoryBot.create(:mountain)
@@ -203,12 +203,12 @@ RSpec.describe "山の削除", type: :system do
       # 山の編集ページに遷移する
       visit edit_mountain_path(@mountain)
       # 削除ボタンを押して、confirmダイアログでOKを選択して、管理者ページに移動するとレコードの数が1減ることを確認する
-      expect{
+      expect do
         page.accept_confirm do
           find_link('削除', href: mountain_path(@mountain)).click
         end
-        expect(page).to have_content("管理者山検索トップページ")
-      }.to change { Mountain.count }.by(-1)
+        expect(page).to have_content('管理者山検索トップページ')
+      end.to change { Mountain.count }.by(-1)
       # 管理者ページへ遷移することを確認する
       expect(current_path).to eq admin_mountains_path
       # 管理者ページには削除した山の内容が存在しないことを確認する

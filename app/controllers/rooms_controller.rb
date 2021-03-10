@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!
-  before_action :if_not_admin, only:[:index]
+  before_action :if_not_admin, only: [:index]
 
   def index
     @rooms = Room.includes(:messages, :entries, :users, :user).order(id: 'DESC')

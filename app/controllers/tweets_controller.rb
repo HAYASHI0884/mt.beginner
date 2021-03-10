@@ -1,7 +1,7 @@
 class TweetsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_tweet, only: [:show, :edit, :update, :destroy]
-  before_action :if_not_admin, only:[:index]
+  before_action :if_not_admin, only: [:index]
 
   def index
     @tweets = Tweet.includes(:user).order(id: 'DESC')

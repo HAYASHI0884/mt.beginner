@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "ユーザー新規登録", type: :system do
+RSpec.describe 'ユーザー新規登録', type: :system do
   before do
     @user = FactoryBot.build(:user)
   end
@@ -19,9 +19,9 @@ RSpec.describe "ユーザー新規登録", type: :system do
       fill_in 'パスワード（6文字以上）', with: @user.password
       fill_in 'パスワード（確認用）', with: @user.password_confirmation
       # Sign upボタンを押すとユーザーモデルのカウントが1上がることを確認する
-      expect{
+      expect  do
         find('input[name="commit"]').click
-      }.to change { User.count }.by(1)
+      end.to change { User.count }.by(1)
       # topページへ遷移したことを確認する
       expect(current_path).to eq pages_top_path
       # ヘッダーにログアウトボタンが表示されることを確認する
@@ -40,16 +40,16 @@ RSpec.describe "ユーザー新規登録", type: :system do
       # 新規登録ページへ移動する
       visit new_user_registration_path
       # ユーザー情報を入力する
-      fill_in 'ユーザーネーム', with: ""
-      fill_in 'メールアドレス', with: ""
-      fill_in 'パスワード（6文字以上）', with: ""
-      fill_in 'パスワード（確認用）', with: ""
+      fill_in 'ユーザーネーム', with: ''
+      fill_in 'メールアドレス', with: ''
+      fill_in 'パスワード（6文字以上）', with: ''
+      fill_in 'パスワード（確認用）', with: ''
       # Sign upボタンを押してもユーザーモデルのカウントは上がらないことを確認する
-      expect{
+      expect  do
         find('input[name="commit"]').click
-      }.to change { User.count }.by(0)
+      end.to change { User.count }.by(0)
       # 新規登録ページへ戻されることを確認する
-      expect(current_path).to eq "/users"
+      expect(current_path).to eq '/users'
     end
   end
 end
@@ -89,8 +89,8 @@ RSpec.describe 'ログイン', type: :system do
       # ログインページへ遷移する
       visit new_user_session_path
       # ユーザー情報を入力する
-      fill_in 'メールアドレス', with: ""
-      fill_in 'パスワード', with: ""
+      fill_in 'メールアドレス', with: ''
+      fill_in 'パスワード', with: ''
       # ログインボタンを押す
       find('input[name="commit"]').click
       # ログインページへ戻されることを確認する
@@ -102,14 +102,14 @@ end
 RSpec.describe 'ゲストユーザーログイン', type: :system do
   context 'ログインができるとき' do
     it 'ゲストログインボタンを押すとゲストログインする' do
-      #indexページに遷移する
+      # indexページに遷移する
       visit root_path
-      #indexページにゲストログインできるボタンがあることを確認する
+      # indexページにゲストログインできるボタンがあることを確認する
       expect(page).to have_content('ゲストログイン（閲覧用）')
       # ゲストログイン（閲覧用）ボタンを押すとユーザーモデルのカウントが1上がることを確認する
-      expect{
+      expect do
         find('a[rel="nofollow"]').click
-      }.to change { User.count }.by(1)
+      end.to change { User.count }.by(1)
       # topページへ遷移することを確認する
       expect(current_path).to eq pages_top_path
       # ヘッダーにログアウトボタンが表示されることを確認する
@@ -143,18 +143,18 @@ RSpec.describe 'ユーザー情報編集', type: :system do
       # 編集画面に遷移する
       visit edit_page_path(@user1)
       # ユーザー情報を編集する
-      attach_file "user[image]", 'app/assets/images/test_image.png'
-      fill_in 'プロフィール', with: "text"
+      attach_file 'user[image]', 'app/assets/images/test_image.png'
+      fill_in 'プロフィール', with: 'text'
       # 編集してもUserモデルのカウントは変わらないことを確認する
-      expect{
+      expect  do
         find('input[name="commit"]').click
-      }.to change { User.count }.by(0)
+      end.to change { User.count }.by(0)
       # マイページに遷移したことを確認する
       expect(current_path).to eq page_path(@user1)
       # マイページには変更した内容の情報がある事を確認する(画像)
       expect(page).to have_selector("img[src$='test_image.png']")
       # マイページには変更した内容の情報がある事を確認する(プロフィール文)
-      expect(page).to have_content("text")
+      expect(page).to have_content('text')
     end
   end
   context 'ユーザー情報を変更できないとき' do
