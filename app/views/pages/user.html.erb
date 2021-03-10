@@ -1,0 +1,24 @@
+<div class="mypage-image">
+  <h1 class="text-white text-shadow ninewords-bg">ユーザー一覧ページ</h1>
+
+  <div class="d-flex align-items-center h-75">
+    <div class="toppage-scroll d-flex justify-content-start align-items-center top-bar-bg">
+      <% @users.each do |user| %>
+        <% if user.admin != true %>
+          <div class="d-inline-block mx-3">
+            <div class="d-flex justify-content-center align-items-center flex-column image-shadow">
+              <% if user.image.attached? %>
+                <%= image_tag user.image.variant(combine_options:{gravity: :center, resize:"180x180^",crop:"180x180+0+0"}).processed %>
+              <% else %>
+                <%= image_tag 'unnamed.png', size:'180x180' %>
+              <% end %>
+              <div class="tweet-title-bg text-center text-white text-shadow mt-3 py-2 rounded-pill">
+                <%= link_to user.name, page_path(user.id), class:"text-white h4" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

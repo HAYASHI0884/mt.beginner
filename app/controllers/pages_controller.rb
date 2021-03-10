@@ -14,6 +14,7 @@ class PagesController < ApplicationController
   end
 
   def user
+    @users = User.includes(:tweets, :messages, :entries).order(id: 'DESC')
   end
 
   def show
