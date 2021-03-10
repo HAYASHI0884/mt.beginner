@@ -5,6 +5,8 @@
     <div class="m-4 image-shadow">
       <% if @user.image.attached? %>
         <%= image_tag @user.image.variant(combine_options:{gravity: :center, resize:"250x250^",crop:"250x250+0+0"}).processed %>
+      <% else %>
+        <%= image_tag 'unnamed.png', size:'250x250' %>
       <% end %>
     </div>
 
