@@ -323,7 +323,7 @@ body.noscroll{
 }
 
 .toppage-scroll {
-  min-height: 277px;
+  min-height: 290px;
   width: 99vw;
   overflow-x: scroll;
   background-color: rgba(255, 255, 255, 0.6);
