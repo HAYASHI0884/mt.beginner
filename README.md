@@ -40,7 +40,8 @@ https://mt-beginner.herokuapp.com/
 * RuboCop
 * Heroku
 * MySQL
-* AWS(S3)
+* AWS(EC2,S3)
+* Capistrano
 
 ## 実装機能一覧
 * ユーザー管理機能
