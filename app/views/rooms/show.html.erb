@@ -5,7 +5,7 @@
     <div class="toppage-scroll d-flex justify-content-start align-items-center top-bar-bg">
       <% @rooms.each do |room| %>
         <% if room.users.include?(current_user) || room.user == current_user %>
-          <div class="topchat-bg rounded d-flex justify-content-center align-items-center flex-column m-3 text-center text-white text-shadow">
+          <div class="topchat-bg rounded d-flex justify-content-center align-items-center flex-column m-3 text-center text-white text-shadow image-shadow">
             <div class="m-3">
               <div>Room name</div>
               <%= link_to room.name, room_messages_path(room.id), class:"h3 text-white" %>
