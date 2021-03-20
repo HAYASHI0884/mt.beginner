@@ -1,4 +1,5 @@
-<h1>管理者ルーム管理ページ</h1>
+<h1 class="mb-4">管理者ルーム管理ページ</h1>
+
 <% @rooms.each do |room| %>
   <div class="d-flex">
     <%= link_to room.name, room_messages_path(room.id) %>
