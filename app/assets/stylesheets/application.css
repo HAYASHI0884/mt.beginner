@@ -423,3 +423,9 @@ body.noscroll{
 .text-color {
   color: rgb(53, 26, 0);
 }
+
+/* 写真表示機能 */
+.image-siz {
+  height: 200px;
+  width: 200px;
+}
