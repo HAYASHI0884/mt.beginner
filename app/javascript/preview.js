@@ -10,7 +10,7 @@ if (document.URL.match(/new/) || document.URL.match(/edit/)) {
       ImageList.appendChild(imageElement);
     };
 
-    document.getElementById('tweet_image').addEventListener('change', function (e) {
+    document.getElementById('js_img').addEventListener('change', function (e) {
       const imageContent = document.querySelector('img');
       if (imageContent) {
         imageContent.remove();

@@ -5,7 +5,7 @@
     <%= form_with model:@user, url:page_path, local:true, class:"d-flex align-items-center justify-content-center flex-column" do |f|%>
       <div class="m-5 text-white text-shadow text-center">
         <%= f.label :image, "プロフィール写真", class:"h4" %><br />
-        <%= f.file_field :image, class:"text-shadow" %>
+        <%= f.file_field :image, class:"text-shadow", id:"js_img" %>
       </div>
       <div class="image-siz" id="image-list"></div>
       <div class="m-5 text-white text-shadow text-center">

@@ -7,7 +7,7 @@
 <%= form_with model:@mountain, local:true do |f|%>
 
   <%= f.label :image, "山の写真" %><br/>
-  <%= f.file_field :image %>
+  <%= f.file_field :image, id:"js_img" %>
   <div id="image-list"></div>
 
   <%= f.label :name, "山の名前" %>
