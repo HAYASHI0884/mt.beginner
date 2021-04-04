@@ -8,9 +8,12 @@ if (document.URL.match(/new/) || document.URL.match(/edit/)) {
       blobImage.setAttribute('src', blob);
       imageElement.appendChild(blobImage);
       ImageList.appendChild(imageElement);
+      blobImage.height = 180;
+      blobImage.width = 180;
     };
 
     document.getElementById('js_img').addEventListener('change', function (e) {
+
       const imageContent = document.querySelector('img');
       if (imageContent) {
         imageContent.remove();
