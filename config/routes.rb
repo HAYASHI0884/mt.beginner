@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   end
   root to: 'pages#index'
   get "pages/top"
-  get "pages/explain"
   get "pages/user"
   resources :pages, only:[:index, :show, :edit, :update]
   resources :mountains

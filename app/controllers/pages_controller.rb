@@ -10,9 +10,6 @@ class PagesController < ApplicationController
     @rooms = Room.includes(:messages, :entries, :users, :user).order(id: 'DESC')
   end
 
-  def explain
-  end
-
   def user
     @users = User.includes(:tweets, :messages, :entries).order(id: 'DESC')
   end
