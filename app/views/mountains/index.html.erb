@@ -45,7 +45,7 @@
           <tbody class="bg-search h5">
             <% @mountain_results.each do |result| %>
               <tr>
-                <td class="p-2"><%= link_to result.name, mountain_path(result.id), class:"text-white" %></td>
+                <td class="p-2"><%= link_to result.name, mountain_path(result.id), class:"text-info border-bottom" %></td>
                 <td class="p-2"><%= result.area.name %></td>
                 <td class="p-2"><%= result.elevation.name %></td>
                 <td class="p-2"><%= result.climb_time.name %></td>
