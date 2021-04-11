@@ -20,7 +20,7 @@
               <% end %>
               <div class="tweet-title-bg text-center text-white text-shadow mt-2 rounded-pill">
                 <div class="h4"><%= tweet.title %></div>
-                <div><%= link_to tweet.user.name, page_path(tweet.user.id), class:"text-white" %></div>
+                <div><%= link_to tweet.user.name, page_path(tweet.user.id), class:"text-white border-bottom" %></div>
               </div>
             </div>
           </div>
@@ -41,11 +41,11 @@
           <div class="topchat-bg rounded d-flex justify-content-center align-items-center flex-column m-3 text-center text-white text-shadow image-shadow">
             <div class="m-3">
               <div>Room name</div>
-              <%= link_to room.name, room_messages_path(room.id), class:"h3 text-white" %>
+              <%= link_to room.name, room_messages_path(room.id), class:"h3 text-white border-bottom" %>
             </div>
             <div class="m-3">
               <div>Host</div>
-              <%= link_to room.user.name, page_path(room.user.id), class:"text-white h3"%>
+              <%= link_to room.user.name, page_path(room.user.id), class:"text-white h3 border-bottom"%>
             </div>
           </div>
         <% end %>
